@@ -37,6 +37,7 @@ function Register() {
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
+    const [confirmState, setConfirm] = useState(true)
 
     //POST request, not in use at the momement
     const postNewUser = newUser => {
@@ -69,18 +70,24 @@ function Register() {
     
     const onSubmit = event => {
         event.preventDefault()
-        const newUser = {
-            firstName: registerValues.firstName.trim(),
-            lastName: registerValues.lastName.trim(),
-            email: registerValues.email.trim(),
-            username: registerValues.username.trim(),
-            password: registerValues.password.trim(),
-            // confirmPassword: registerValues.confirmPassword.trim(),
+        if(registerValues.password === registerValues.confirmPassword) {
+            setConfirm(true)
+            const newUser = {
+                firstName: registerValues.firstName.trim(),
+                lastName: registerValues.lastName.trim(),
+                email: registerValues.email.trim(),
+                username: registerValues.username.trim(),
+                password: registerValues.password.trim(),
+                // confirmPassword: registerValues.confirmPassword.trim(),
+            }
+            //instead of posting new user, just console logging the data for now
+            console.log(newUser)
+    
+            // postNewUser(newUser)
+        } else {
+            setConfirm(false)
         }
-        //instead of posting new user, just console logging the data for now
-        console.log(newUser)
-
-        // postNewUser(newUser)
+       
     }
 
     useEffect(() => {
@@ -148,7 +155,7 @@ function Register() {
                 /> 
             </label>
 
-            {/* <label  className='confirmPassword'>
+            <label  className='confirmPassword'>
                 <input
                     type='password'
                     name='confirmPassword'
@@ -158,7 +165,7 @@ function Register() {
                     placeholder='Confirm Password'
                     
                 />
-            </label> */}
+            </label> 
 
             <h4>Accept the terms?</h4>
             <label className='terms'> Accept
@@ -172,6 +179,10 @@ function Register() {
                 />
             </label>
             <button disabled={disabledReg}>Register</button>
+            {/* <div>
+                <h4>Already have an account?</h4>
+                <a href='#'>Login</a>
+            </div> */}
             <div>
                 <div>{registerErrors.firstName}</div>
                 <div>{registerErrors.lastName}</div>
@@ -180,6 +191,7 @@ function Register() {
                 <div>{registerErrors.password}</div>
                 {/* <div>{registerErrors.confirmPassword}</div> */}
                 <div>{registerErrors.terms}</div>
+                {!confirmState && <p>Passwords do not match</p>}
             </div>
         </div>
     </StyledRegister>

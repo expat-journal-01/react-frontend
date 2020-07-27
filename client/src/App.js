@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Route, NavLink, Switch } from 'react-router-dom';
 import './App.css';
+
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -18,11 +20,11 @@ function App() {
           Home
         </NavLink>
       </header>
-      <Route exact path = "/" />
-
-      <Route exact path = "/login" />
-
-      <Route exact path = "/signup" />
+      <Switch>
+        <PrivateRoute exact path = "/" />
+        <Route path = "/login" />
+        <Route path = "/signup" />
+      </Switch>
     </div>
   );
 }

@@ -3,7 +3,8 @@
 
 import React, { useState, useEffect } from 'react' 
 import axios from 'axios'
-// import * as yup from 'yup'
+import regFormSchema from '../validation/regFormSchema'
+import * as yup from 'yup'
 // import registerSchema from 
 
 const initialRegisterValues = {
@@ -31,6 +32,7 @@ const initialRegisterValues = {
   
 
 function Register() {
+   
     const [users, setUsers] = useState(initialUsers)
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
@@ -38,25 +40,34 @@ function Register() {
 
     // console.log(registerValues)
 
-    const inputChange = (name, value) => {
-        setRegisterValues({ ...registerValues, [name]: value})
+    const inputChange = event => {
+        event.persist()
+        event.target.type === 'checkbox' ? setRegisterValues ({ ...registerValues, [event.target.name]: event.target.checked}) : setRegisterValues({ ...registerValues, [event.target.name]: event.target.value })
+        yup
+            .reach(regFormSchema, event.target.name)
+            .validate(event.target.type === 'checkbox' ? event.target.checked : event.target.value)
+            .then((valid) => {
+                setRegisterErrors({ ...registerErrors, [event.target.name]: ''})
+            })
+            .catch((err) => {
+                setRegisterErrors({ ...registerErrors, [event.target.name]: err.errors})
+            })
     }
 
-    const onInputChange = event => {
-        const name = event.target.name
-        const value = event.target.value
-        inputChange(name, value)
-    }
+    
+
+
 
     return (
     <form>
+        <h3>Sign Up</h3>
         <label>
             <input
                 type='text'
                 name='firstName'
                 id='firstName'
                 values={registerValues.firstName}
-                onChange={onInputChange}
+                onChange={inputChange}
                 placeholder='First Name'
             />
         </label>
@@ -67,7 +78,7 @@ function Register() {
                  name='lastName'
                  id='lastName'
                  values={registerValues.lastName}
-                 onChange={onInputChange}
+                 onChange={inputChange}
                  placeholder='Last Name'
             />
         </label>
@@ -78,7 +89,7 @@ function Register() {
                  name='email'
                  id='email'
                  values={registerValues.email}
-                 onChange={onInputChange}
+                 onChange={inputChange}
                  placeholder='Email Address'
             /> 
         </label>
@@ -89,7 +100,7 @@ function Register() {
                  name='username'
                  id='username'
                  values={registerValues.username}
-                 onChange={onInputChange}
+                 onChange={inputChange}
                  placeholder='Username'
             /> 
         </label>
@@ -100,7 +111,7 @@ function Register() {
                  name='password'
                  id='password'
                  values={registerValues.password}
-                 onChange={onInputChange}
+                 onChange={inputChange}
                  placeholder='Password'
             /> 
         </label>
@@ -111,7 +122,7 @@ function Register() {
                  name='confirmPassword'
                  id='confirmPassword'
                  values={registerValues.confirmPassword}
-                 onChange={onInputChange}
+                 onChange={inputChange}
                  placeholder='Confirm Password'
                  
             />
@@ -122,9 +133,21 @@ function Register() {
                  type='checkbox'
                  name='terms'
                  id='terms'
+                 checked={registerValues.terms}
+                 onChange={inputChange}
+
             />
         </label>
         <button>Register</button>
+        <div>
+            <div>{registerErrors.firstName}</div>
+            <div>{registerErrors.lastName}</div>
+            <div>{registerErrors.email}</div>
+            <div>{registerErrors.username}</div>
+            <div>{registerErrors.password}</div>
+            <div>{registerErrors.confirmPassword}</div>
+            <div>{registerErrors.terms}</div>
+        </div>
     </form>
     )
 }

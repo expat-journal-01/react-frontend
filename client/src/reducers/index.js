@@ -1,6 +1,12 @@
 const initalState = {
     username: "",
-    password: ""
+    password: "",
+    post: {
+        title: "",
+        description: "",
+        coverImage: "",
+        userId: "",
+    }
 }
 
 export const reducer = (state = initalState, action) => {

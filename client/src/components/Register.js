@@ -38,9 +38,9 @@ function Register() {
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
 
-
+    //POST request, not in use at the momement
     const postNewUser = newUser => {
-        axios.post('', newUser)
+        axios.post('http://backend-expat-journal.herokuapp.com/api/auth/register', newUser)
         .then(res => {
             console.log(res)
             setUsers([ res.data, ...users ])
@@ -75,10 +75,12 @@ function Register() {
             email: registerValues.email.trim(),
             username: registerValues.username.trim(),
             password: registerValues.password.trim(),
-            confirmPassword: registerValues.confirmPassword.trim(),
+            // confirmPassword: registerValues.confirmPassword.trim(),
         }
+        //instead of posting new user, just console logging the data for now
         console.log(newUser)
-        //postNewUser(newUser)
+
+        // postNewUser(newUser)
     }
 
     useEffect(() => {
@@ -91,7 +93,7 @@ function Register() {
     <StyledRegister onSubmit={onSubmit}>
         <h3>Sign Up</h3>
         <div className='inputs-container'>
-            <label>
+            <label className='firstName'>
                 <input
                     type='text'
                     name='firstName'
@@ -102,7 +104,7 @@ function Register() {
                 />
             </label>
 
-            <label>
+            <label className='lastName'>
                 <input
                     type='text'
                     name='lastName'
@@ -113,7 +115,7 @@ function Register() {
                 />
             </label>
 
-            <label>
+            <label  className='email'>
                 <input
                     type='email'
                     name='email'
@@ -124,7 +126,7 @@ function Register() {
                 /> 
             </label>
 
-            <label>
+            <label  className='username'>
                 <input
                     type='text'
                     name='username'
@@ -135,7 +137,7 @@ function Register() {
                 /> 
             </label>
 
-            <label>
+            <label  className='password'>
                 <input
                     type='password'
                     name='password'
@@ -146,7 +148,7 @@ function Register() {
                 /> 
             </label>
 
-            {/* <label>
+            {/* <label  className='confirmPassword'>
                 <input
                     type='password'
                     name='confirmPassword'
@@ -157,8 +159,9 @@ function Register() {
                     
                 />
             </label> */}
+
             <h4>Accept the terms?</h4>
-            <label> Accept
+            <label className='terms'> Accept
                 <input
                     type='checkbox'
                     name='terms'

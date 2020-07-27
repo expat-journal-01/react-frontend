@@ -24,6 +24,7 @@ const StyledRegister = styled.form `
     h4 {
         margin: 0;
     }
+    
     button {
         margin: 3%;
     }

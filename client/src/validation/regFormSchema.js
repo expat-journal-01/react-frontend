@@ -13,13 +13,15 @@ const regFormSchema = yup.object().shape({
     .required('Email is required'), 
     username: yup 
     .string()
+    .min(3, 'Username must be at least 3 characters long')
     .required('Username is required'),
     password: yup 
     .string()
+    .min(4, 'Username must be at least 4 characters long')
     .required('Password is required'),
     // confirmPassword: yup 
     // .string()
-    // .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    // .oneOf([yup.ref("password")], "Both password need to be the same"),
     terms: yup 
     .boolean()
     .oneOf([true], 'Please agree to the terms of service')

@@ -1,8 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 import './App.css';
+import Register from './components/Register'
 
-function App() {
+
+
+
+function App() { 
+
   return (
     <div className="App">
       <header>
@@ -22,7 +27,9 @@ function App() {
 
       <Route exact path = "/login" />
 
-      <Route exact path = "/signup" />
+      <Route exact path = "/signup">
+        {/* <Register />  */}
+      </Route>
     </div>
   );
 }

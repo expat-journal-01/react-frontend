@@ -6,7 +6,9 @@ const initalState = {
         description: "",
         coverImage: "",
         userId: "",
-    }
+    },
+    isLoading: false,
+    error: ""
 }
 
 export const reducer = (state = initalState, action) => {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 import './App.css';
 import Register from './components/Register'
 
@@ -10,8 +10,26 @@ function App() {
 
   return (
     <div className="App">
-      <h1>App homepage</h1>
-      <Register />
+      <header>
+        <NavLink exact to = "/login">
+          LogIn
+        </NavLink>
+
+        <NavLink exact to = "/signup">
+          SignUp
+        </NavLink>
+
+        <NavLink exact to = "/">
+          Home
+        </NavLink>
+      </header>
+      <Route exact path = "/" />
+
+      <Route exact path = "/login" />
+
+      <Route exact path = "/signup">
+        {/* <Register />  */}
+      </Route>
     </div>
   );
 }

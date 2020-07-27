@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
+import StyledRegister from './StyledRegister'
 
 
 const initialRegisterValues = {
@@ -50,7 +51,6 @@ function Register() {
         })
     }
 
-    // console.log(registerValues)
 
     const inputChange = event => {
         event.persist()
@@ -88,96 +88,98 @@ function Register() {
       }, [registerValues])
 
     return (
-    <form onSubmit={onSubmit}>
+    <StyledRegister onSubmit={onSubmit}>
         <h3>Sign Up</h3>
-        <label>
-            <input
-                type='text'
-                name='firstName'
-                id='firstName'
-                values={registerValues.firstName}
-                onChange={inputChange}
-                placeholder='First Name'
-            />
-        </label>
+        <div className='inputs-container'>
+            <label>
+                <input
+                    type='text'
+                    name='firstName'
+                    id='firstName'
+                    values={registerValues.firstName}
+                    onChange={inputChange}
+                    placeholder='First Name'
+                />
+            </label>
 
-        <label>
-            <input
-                 type='text'
-                 name='lastName'
-                 id='lastName'
-                 values={registerValues.lastName}
-                 onChange={inputChange}
-                 placeholder='Last Name'
-            />
-        </label>
+            <label>
+                <input
+                    type='text'
+                    name='lastName'
+                    id='lastName'
+                    values={registerValues.lastName}
+                    onChange={inputChange}
+                    placeholder='Last Name'
+                />
+            </label>
 
-        <label>
-            <input
-                 type='email'
-                 name='email'
-                 id='email'
-                 values={registerValues.email}
-                 onChange={inputChange}
-                 placeholder='Email Address'
-            /> 
-        </label>
+            <label>
+                <input
+                    type='email'
+                    name='email'
+                    id='email'
+                    values={registerValues.email}
+                    onChange={inputChange}
+                    placeholder='Email Address'
+                /> 
+            </label>
 
-        <label>
-            <input
-                 type='text'
-                 name='username'
-                 id='username'
-                 values={registerValues.username}
-                 onChange={inputChange}
-                 placeholder='Username'
-            /> 
-        </label>
+            <label>
+                <input
+                    type='text'
+                    name='username'
+                    id='username'
+                    values={registerValues.username}
+                    onChange={inputChange}
+                    placeholder='Username'
+                /> 
+            </label>
 
-        <label>
-            <input
-                 type='password'
-                 name='password'
-                 id='password'
-                 values={registerValues.password}
-                 onChange={inputChange}
-                 placeholder='Password'
-            /> 
-        </label>
+            <label>
+                <input
+                    type='password'
+                    name='password'
+                    id='password'
+                    values={registerValues.password}
+                    onChange={inputChange}
+                    placeholder='Password'
+                /> 
+            </label>
 
-        {/* <label>
-            <input
-                 type='password'
-                 name='confirmPassword'
-                 id='confirmPassword'
-                 values={registerValues.confirmPassword}
-                 onChange={inputChange}
-                 placeholder='Confirm Password'
-                 
-            />
-        </label> */}
-        <h4>Accept the terms?</h4>
-        <label> Accept
-            <input
-                 type='checkbox'
-                 name='terms'
-                 id='terms'
-                 checked={registerValues.terms}
-                 onChange={inputChange}
+            {/* <label>
+                <input
+                    type='password'
+                    name='confirmPassword'
+                    id='confirmPassword'
+                    values={registerValues.confirmPassword}
+                    onChange={inputChange}
+                    placeholder='Confirm Password'
+                    
+                />
+            </label> */}
+            <h4>Accept the terms?</h4>
+            <label> Accept
+                <input
+                    type='checkbox'
+                    name='terms'
+                    id='terms'
+                    checked={registerValues.terms}
+                    onChange={inputChange}
 
-            />
-        </label>
-        <button disabled={disabledReg}>Register</button>
-        <div>
-            <div>{registerErrors.firstName}</div>
-            <div>{registerErrors.lastName}</div>
-            <div>{registerErrors.email}</div>
-            <div>{registerErrors.username}</div>
-            <div>{registerErrors.password}</div>
-            {/* <div>{registerErrors.confirmPassword}</div> */}
-            <div>{registerErrors.terms}</div>
+                />
+            </label>
+            <button disabled={disabledReg}>Register</button>
+            <div>
+                <div>{registerErrors.firstName}</div>
+                <div>{registerErrors.lastName}</div>
+                <div>{registerErrors.email}</div>
+                <div>{registerErrors.username}</div>
+                <div>{registerErrors.password}</div>
+                {/* <div>{registerErrors.confirmPassword}</div> */}
+                <div>{registerErrors.terms}</div>
+            </div>
         </div>
-    </form>
+    </StyledRegister>
     )
 }
 

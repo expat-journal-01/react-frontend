@@ -1,10 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>App homepage</h1>
+      <header>
+        <NavLink exact to = "/login">
+          LogIn
+        </NavLink>
+
+        <NavLink exact to = "/signup">
+          SignUp
+        </NavLink>
+
+        <NavLink exact to = "/">
+          Home
+        </NavLink>
+      </header>
+      <Route exact path = "/" />
+
+      <Route exact path = "/login" />
+
+      <Route exact path = "/signup" />
     </div>
   );
 }

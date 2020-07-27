@@ -17,9 +17,9 @@ const regFormSchema = yup.object().shape({
     password: yup 
     .string()
     .required('Password is required'),
-    confirmPassword: yup 
-    .string()
-    .required('Password is required'),
+    // confirmPassword: yup 
+    // .string()
+    // .oneOf([yup.ref('password'), null], 'Passwords must match'),
     terms: yup 
     .boolean()
     .oneOf([true], 'Please agree to the terms of service')

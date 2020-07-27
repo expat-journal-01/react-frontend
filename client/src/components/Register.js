@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
-// import registerSchema from 
+
 
 const initialRegisterValues = {
     firstName: '',
@@ -32,11 +32,23 @@ const initialRegisterValues = {
   
 
 function Register() {
-   
     const [users, setUsers] = useState(initialUsers)
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
+
+
+    const postNewUser = newUser => {
+        axios.post('', newUser)
+        .then(res => {
+            console.log(res)
+            setUsers([ res.data, ...users ])
+            setRegisterValues(initialRegisterValues)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
     // console.log(registerValues)
 
@@ -55,11 +67,28 @@ function Register() {
     }
 
     
+    const onSubmit = event => {
+        event.preventDefault()
+        const newUser = {
+            firstName: registerValues.firstName.trim(),
+            lastName: registerValues.lastName.trim(),
+            email: registerValues.email.trim(),
+            username: registerValues.username.trim(),
+            password: registerValues.password.trim(),
+            confirmPassword: registerValues.confirmPassword.trim(),
+        }
+        console.log(newUser)
+        //postNewUser(newUser)
+    }
 
-
+    useEffect(() => {
+        regFormSchema.isValid(registerValues).then(valid => {
+          setRegDisabled(!valid)
+        })
+      }, [registerValues])
 
     return (
-    <form>
+    <form onSubmit={onSubmit}>
         <h3>Sign Up</h3>
         <label>
             <input
@@ -116,7 +145,7 @@ function Register() {
             /> 
         </label>
 
-        <label>
+        {/* <label>
             <input
                  type='password'
                  name='confirmPassword'
@@ -126,7 +155,7 @@ function Register() {
                  placeholder='Confirm Password'
                  
             />
-        </label>
+        </label> */}
         <h4>Accept the terms?</h4>
         <label> Accept
             <input
@@ -138,14 +167,14 @@ function Register() {
 
             />
         </label>
-        <button>Register</button>
+        <button disabled={disabledReg}>Register</button>
         <div>
             <div>{registerErrors.firstName}</div>
             <div>{registerErrors.lastName}</div>
             <div>{registerErrors.email}</div>
             <div>{registerErrors.username}</div>
             <div>{registerErrors.password}</div>
-            <div>{registerErrors.confirmPassword}</div>
+            {/* <div>{registerErrors.confirmPassword}</div> */}
             <div>{registerErrors.terms}</div>
         </div>
     </form>

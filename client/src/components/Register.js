@@ -26,7 +26,7 @@ const initialRegisterValues = {
     email: '',
     username: '',
     password: '',
-    confirmPassword: '',
+    // confirmPassword: '',
     terms: false
   }
   
@@ -36,7 +36,7 @@ const initialRegisterValues = {
     email: '',
     username: '',
     password: '',
-    confirmPassword: '',
+    // confirmPassword: '',
     terms: false
   }
   
@@ -50,7 +50,7 @@ function Register() {
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
-    const [confirmState, setConfirm] = useState(true)
+    // const [confirmState, setConfirm] = useState(true)
 
     //POST request, not in use at the momement
     const postNewUser = newUser => {
@@ -85,16 +85,9 @@ function Register() {
     const onSubmit = event => {
         event.preventDefault()
         const newUser = {
-            // firstName: registerValues.firstName.trim(),
-            // lastName: registerValues.lastName.trim(),
-            // email: registerValues.email.trim(),
             username: registerValues.username.trim(),
             password: registerValues.password.trim()
-            // confirmPassword: registerValues.confirmPassword.trim(),
         }
-        //instead of posting new user, just console logging the data for now
-        // console.log(newUser)
-
         postNewUser(newUser)
     }
 
@@ -106,107 +99,103 @@ function Register() {
 
     return (
         <StyledRegContainer className='form-container'>
-    <StyledRegister onSubmit={onSubmit}>
-        <h1>Sign Up</h1>
-        <div className='inputs-container'>
-            <TextField
-                className='text-field'
-                name='firstName'
-                id='firstName'
-                values={registerValues.firstName}
-                onChange={inputChange}
-                placeholder='First Name'
-                variant='outlined' 
-            />
-
-             <TextField
-                className='text-field'
-                name='lastName'
-                id='lastName'
-                values={registerValues.lastName}
-                onChange={inputChange}
-                placeholder='Last Name' 
-                variant='outlined' 
-            />
-
-            <TextField
-                className='text-field'
-                type='email'
-                name='email'
-                id='email'
-                values={registerValues.email}
-                onChange={inputChange}
-                placeholder='Email' 
-                variant='outlined' 
-            />
-
-            <TextField
-                className='text-field'
-                name='username'
-                id='username'
-                values={registerValues.username}
-                onChange={inputChange}
-                placeholder='Username' 
-                variant='outlined' 
-            />
-
-            <TextField
-                className='text-field'
-                type='password'
-                name='password'
-                id='password'
-                values={registerValues.password}
-                onChange={inputChange}
-                placeholder='Password' 
-                variant='outlined' 
-            />
-
-            <TextField
-                className='text-field'
-                type='password'
-                name='confirmPassword'
-                id='confirmPassword'
-                values={registerValues.confirmPassword}
-                onChange={inputChange}
-                placeholder='Confirm Password'
-                variant='outlined' 
-            />
-
-            <FormControl required>
-                <FormLabel className='checkbox-label' style={{ color: '#177F75' }}>Do you accept the terms of service?</FormLabel>
-                <FormGroup className='checkbox-container'>
-                    <FormControlLabel className='accept-label' control={
-                        <Checkbox
-                        name='terms'
-                        id='terms'
-                        checked={registerValues.terms}
+            <StyledRegister onSubmit={onSubmit}>
+                <h1>Sign Up</h1>
+                <div className='inputs-container'>
+                    <TextField
+                        className='text-field'
+                        name='firstName'
+                        id='firstName'
+                        values={registerValues.firstName}
                         onChange={inputChange}
-                        style={{ color:' #177F75' }}
-                        />
-                    }
-                    label='Accept'
+                        placeholder='First Name'
+                        variant='outlined' 
                     />
-                </FormGroup>
-            </FormControl>
 
-           
-            <Button className='sign-up-button' onClick={onSubmit} disabled={disabledReg} variant='contained' color='primary' >Sign Up</Button>
-            {/* <div>
-                <h4>Already have an account?</h4>
-                <a href='#'>Login</a>
-            </div> */}
-            <div className='formErrors'>
-                <div>{registerErrors.firstName}</div>
-                <div>{registerErrors.lastName}</div>
-                <div>{registerErrors.email}</div>
-                <div>{registerErrors.username}</div>
-                <div>{registerErrors.password}</div>
-                <div>{registerErrors.terms}</div>
-                <div>{!confirmState && <p>Passwords do not match</p>}</div>
-            </div>
-        </div>
-    </StyledRegister>
-    </StyledRegContainer>
+                    <TextField
+                        className='text-field'
+                        name='lastName'
+                        id='lastName'
+                        values={registerValues.lastName}
+                        onChange={inputChange}
+                        placeholder='Last Name' 
+                        variant='outlined' 
+                    />
+
+                    <TextField
+                        className='text-field'
+                        type='email'
+                        name='email'
+                        id='email'
+                        values={registerValues.email}
+                        onChange={inputChange}
+                        placeholder='Email' 
+                        variant='outlined' 
+                    />
+
+                    <TextField
+                        className='text-field'
+                        name='username'
+                        id='username'
+                        values={registerValues.username}
+                        onChange={inputChange}
+                        placeholder='Username' 
+                        variant='outlined' 
+                    />
+
+                    <TextField
+                        className='text-field'
+                        type='password'
+                        name='password'
+                        id='password'
+                        values={registerValues.password}
+                        onChange={inputChange}
+                        placeholder='Password' 
+                        variant='outlined' 
+                    />
+
+                    {/* <TextField
+                        className='text-field'
+                        type='password'
+                        name='confirmPassword'
+                        id='confirmPassword'
+                        values={registerValues.confirmPassword}
+                        onChange={inputChange}
+                        placeholder='Confirm Password'
+                        variant='outlined' 
+                    /> */}
+
+                    <FormControl>
+                        <FormLabel className='checkbox-label' style={{ color: 'black' }}>Do you accept the terms of service?</FormLabel>
+                        <FormGroup className='checkbox-container'>
+                            <FormControlLabel className='accept-label' control={
+                                <Checkbox
+                                name='terms'
+                                id='terms'
+                                checked={registerValues.terms}
+                                onChange={inputChange}
+                                style={{ color:' #177F75' }}
+                                />
+                            }
+                            label='Accept'
+                            />
+                        </FormGroup>
+                    </FormControl>
+
+                
+                    <Button className='sign-up-button' onClick={onSubmit} disabled={disabledReg} variant='contained' color='primary' >Sign Up</Button>
+                    <div className='formErrors'>
+                        <div>{registerErrors.firstName}</div>
+                        <div>{registerErrors.lastName}</div>
+                        <div>{registerErrors.email}</div>
+                        <div>{registerErrors.username}</div>
+                        <div>{registerErrors.password}</div>
+                        <div>{registerErrors.terms}</div>
+                        {/* <div>{!confirmState && <p>Passwords do not match</p>}</div> */}
+                    </div>
+                </div>
+            </StyledRegister>
+        </StyledRegContainer>
     )
 }
 

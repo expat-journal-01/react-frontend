@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
-import StyledRegister from './StyledRegister'
+import StyledRegister from './registerStyles/StyledRegister'
+import StyledRegContainer from './registerStyles/StyledRegContainer'
 import { 
     TextField, 
     FormControl, 
@@ -51,7 +52,7 @@ function Register() {
 
     //POST request, not in use at the momement
     const postNewUser = newUser => {
-        axios.post('http://backend-expat-journal.herokuapp.com/api/auth/register', newUser)
+        axios.post('http://157.245.163.179:8000/api/auth/register', newUser)
         .then(res => {
             console.log(res)
             setUsers([ res.data, ...users ])
@@ -107,6 +108,7 @@ function Register() {
       }, [registerValues])
 
     return (
+        <StyledRegContainer className='form-container'>
     <StyledRegister onSubmit={onSubmit}>
         <h1>Sign Up</h1>
         <div className='inputs-container'>
@@ -116,7 +118,8 @@ function Register() {
                 id='firstName'
                 values={registerValues.firstName}
                 onChange={inputChange}
-                placeholder='First Name' 
+                placeholder='First Name'
+                variant='outlined' 
             />
 
              <TextField
@@ -126,6 +129,7 @@ function Register() {
                 values={registerValues.lastName}
                 onChange={inputChange}
                 placeholder='Last Name' 
+                variant='outlined' 
             />
 
             <TextField
@@ -136,6 +140,7 @@ function Register() {
                 values={registerValues.email}
                 onChange={inputChange}
                 placeholder='Email' 
+                variant='outlined' 
             />
 
             <TextField
@@ -145,6 +150,7 @@ function Register() {
                 values={registerValues.username}
                 onChange={inputChange}
                 placeholder='Username' 
+                variant='outlined' 
             />
 
             <TextField
@@ -155,6 +161,7 @@ function Register() {
                 values={registerValues.password}
                 onChange={inputChange}
                 placeholder='Password' 
+                variant='outlined' 
             />
 
             <TextField
@@ -164,7 +171,8 @@ function Register() {
                 id='confirmPassword'
                 values={registerValues.confirmPassword}
                 onChange={inputChange}
-                placeholder='Confirm Password' 
+                placeholder='Confirm Password'
+                variant='outlined' 
             />
 
             <FormControl required>
@@ -201,6 +209,7 @@ function Register() {
             </div>
         </div>
     </StyledRegister>
+    </StyledRegContainer>
     )
 }
 

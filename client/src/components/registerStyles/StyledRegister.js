@@ -8,7 +8,7 @@ const StyledRegister = styled.form `
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 3% auto;
+    margin: 3%;
     width: 40%;
     border: 1px solid grey;
     border-radius: 10px;
@@ -19,6 +19,10 @@ const StyledRegister = styled.form `
         background-color: #B67721;
         color: white;
         width: 100%;
+        font-family: 'Modern Antiqua', cursive;
+        padding: 2% 0;
+        margin-top: 4%;
+        
     }
 
     .inputs-container {
@@ -52,10 +56,13 @@ const StyledRegister = styled.form `
     .sign-up-button {
         margin: 3%;
         background-color: #B6212D  ;
+        font-family: 'Modern Antiqua', cursive;
         &:hover {
             background-color:  #7F171F;
         }
     }
+
+
     
     .formErrors {
         color: #B6212D  ;

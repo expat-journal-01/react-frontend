@@ -1,7 +1,8 @@
 //Signup page please set up an empty post request, I(Dominique) will finish it, if you need help doing so please dm me :)
 //good luck!! I'll be here if you need any help
 
-import React, { useState, useEffect } from 'react' 
+import React, { useState, useEffect } from 'react'
+import { useHistory }  from 'react-router-dom';
 import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
@@ -44,6 +45,7 @@ const initialRegisterValues = {
   
 
 function Register() {
+    const { push } = useHistory();
     const [users, setUsers] = useState(initialUsers)
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
@@ -54,12 +56,13 @@ function Register() {
     const postNewUser = newUser => {
         axios.post('http://157.245.163.179:8000/api/auth/register', newUser)
         .then(res => {
-            console.log(res)
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)
+            push(`/login`);
+            console.log(res)
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
         })
     }
 
@@ -81,24 +84,18 @@ function Register() {
     
     const onSubmit = event => {
         event.preventDefault()
-        if(registerValues.password === registerValues.confirmPassword) {
-            setConfirm(true)
-            const newUser = {
-                firstName: registerValues.firstName.trim(),
-                lastName: registerValues.lastName.trim(),
-                email: registerValues.email.trim(),
-                username: registerValues.username.trim(),
-                password: registerValues.password.trim(),
-                confirmPassword: registerValues.confirmPassword.trim(),
-            }
-            //instead of posting new user, just console logging the data for now
-            console.log(newUser)
-    
-            // postNewUser(newUser)
-        } else {
-            setConfirm(false)
+        const newUser = {
+            // firstName: registerValues.firstName.trim(),
+            // lastName: registerValues.lastName.trim(),
+            // email: registerValues.email.trim(),
+            username: registerValues.username.trim(),
+            password: registerValues.password.trim()
+            // confirmPassword: registerValues.confirmPassword.trim(),
         }
-       
+        //instead of posting new user, just console logging the data for now
+        // console.log(newUser)
+
+        postNewUser(newUser)
     }
 
     useEffect(() => {

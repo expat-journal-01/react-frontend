@@ -13,8 +13,6 @@ import {
     Button, Checkbox, 
     FormLabel, 
     FormGroup,
-    NativeSelect, 
-    Select,
     FormHelperText, 
     InputLabel
   } from '@material-ui/core'
@@ -90,7 +88,7 @@ function Register() {
                 email: registerValues.email.trim(),
                 username: registerValues.username.trim(),
                 password: registerValues.password.trim(),
-                // confirmPassword: registerValues.confirmPassword.trim(),
+                confirmPassword: registerValues.confirmPassword.trim(),
             }
             //instead of posting new user, just console logging the data for now
             console.log(newUser)
@@ -109,10 +107,11 @@ function Register() {
       }, [registerValues])
 
     return (
-    <form onSubmit={onSubmit}>
-        <h3>Sign Up</h3>
+    <StyledRegister onSubmit={onSubmit}>
+        <h1>Sign Up</h1>
         <div className='inputs-container'>
             <TextField
+                className='text-field'
                 name='firstName'
                 id='firstName'
                 values={registerValues.firstName}
@@ -121,6 +120,7 @@ function Register() {
             />
 
              <TextField
+                className='text-field'
                 name='lastName'
                 id='lastName'
                 values={registerValues.lastName}
@@ -129,6 +129,7 @@ function Register() {
             />
 
             <TextField
+                className='text-field'
                 type='email'
                 name='email'
                 id='email'
@@ -138,6 +139,7 @@ function Register() {
             />
 
             <TextField
+                className='text-field'
                 name='username'
                 id='username'
                 values={registerValues.username}
@@ -146,6 +148,7 @@ function Register() {
             />
 
             <TextField
+                className='text-field'
                 type='password'
                 name='password'
                 id='password'
@@ -155,6 +158,7 @@ function Register() {
             />
 
             <TextField
+                className='text-field'
                 type='password'
                 name='confirmPassword'
                 id='confirmPassword'
@@ -164,39 +168,39 @@ function Register() {
             />
 
             <FormControl required>
-                <FormLabel>Do you accept the terms of service?</FormLabel>
-                <FormGroup>
-                    <FormControlLabel control={
+                <FormLabel className='checkbox-label' style={{ color: '#177F75' }}>Do you accept the terms of service?</FormLabel>
+                <FormGroup className='checkbox-container'>
+                    <FormControlLabel className='accept-label' control={
                         <Checkbox
                         name='terms'
                         id='terms'
                         checked={registerValues.terms}
                         onChange={inputChange}
+                        style={{ color:' #177F75' }}
                         />
                     }
-                    label='Agree'
+                    label='Accept'
                     />
                 </FormGroup>
             </FormControl>
 
            
-            <Button onClick={onSubmit} disabled={disabledReg} variant='contained' color='primary' >Sign Up</Button>
+            <Button className='sign-up-button' onClick={onSubmit} disabled={disabledReg} variant='contained' color='primary' >Sign Up</Button>
             {/* <div>
                 <h4>Already have an account?</h4>
                 <a href='#'>Login</a>
             </div> */}
-            <div>
+            <div className='formErrors'>
                 <div>{registerErrors.firstName}</div>
                 <div>{registerErrors.lastName}</div>
                 <div>{registerErrors.email}</div>
                 <div>{registerErrors.username}</div>
                 <div>{registerErrors.password}</div>
-                {/* <div>{registerErrors.confirmPassword}</div> */}
                 <div>{registerErrors.terms}</div>
-                {!confirmState && <p>Passwords do not match</p>}
+                <div>{!confirmState && <p>Passwords do not match</p>}</div>
             </div>
         </div>
-    </form>
+    </StyledRegister>
     )
 }
 

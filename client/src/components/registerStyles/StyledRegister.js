@@ -65,7 +65,8 @@ const StyledRegister = styled.form `
 
     
     .formErrors {
-        color: #B6212D  ;
+        color: #B6212D;
+        margin-bottom: 2%;
     }
 
    

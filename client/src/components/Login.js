@@ -36,7 +36,7 @@ export default function Form() {
   const formSubmit = e => {
     e.preventDefault();
     axios
-      .post("http://backend-expat-journal.herokuapp.com/api/auth/login", { username: formState.username, password: formState.password })
+      .post("http://157.245.163.179:8000/api/auth/login", { username: formState.username, password: formState.password })
       .then(res => {
         setUsers(res.data); // get just the form data from the REST api
 

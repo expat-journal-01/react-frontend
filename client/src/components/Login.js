@@ -38,7 +38,7 @@ export default function Form({ fetchStoryData }) {
   const formSubmit = e => {
     e.preventDefault();
     axios
-      .post("http://backend-expat-journal.herokuapp.com/api/auth/login", { username: formState.username, password: formState.password })
+      .post("http://157.245.163.179:8000/api/auth/login", { username: formState.username, password: formState.password })
       .then(res => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);

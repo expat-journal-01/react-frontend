@@ -1,0 +1,40 @@
+.stories-container {
+    border: 1px solid blue;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
+.story {
+    border: 1px solid red;
+    width: 85%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.story p {
+    align-self: start;
+}
+
+.story .img-container {
+    border: 2px solid pink;
+    width: 60%;
+    height: 40vh;
+    align-self: center;
+    overflow: hidden;
+}
+
+.story .img-container img {
+    width: 100%;
+}
+
+.story .edit-delete-btns {
+    width: 20%;
+    align-self: flex-end;
+}
+
+.story .edit-delete-btns .btn {
+    border: 1px solid black;
+}

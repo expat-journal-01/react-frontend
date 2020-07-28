@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
@@ -11,6 +11,10 @@ import Stories from './components/Stories';
 import { fetchStoryData } from './actions/index';
 
 const App = props => {
+  useEffect(() => {
+    props.fetchStoryData();
+  }, [])
+  
   return (
     <Router>
       <div className="App">
@@ -28,7 +32,7 @@ const App = props => {
           </Link>
         </header>
         <Switch>
-          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} fetchStoryData = {props.fetchStoryData} posts = {props.posts} />} />
+          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} posts = {props.posts} />} />
           <Route exact path = "/signup" component = {Register} />
           <Route exact path = "/login" component = {() => <Form />} />
         </Switch>

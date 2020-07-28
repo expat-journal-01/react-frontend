@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import Story from './Story';
+import PrivateRoute from './PrivateRoute';
 
 const Stories = props => {
-    useEffect(() => {
-        props.fetchStoryData();
-    }, [])
 
     return ( 
         <div>

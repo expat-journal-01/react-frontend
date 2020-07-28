@@ -15,10 +15,11 @@ export const reducer = (state = initalState, action) => {
                 isLoading: true
             }
         case FETCHING_DATA:
-            // return{
-            //     ...state,
-            //     isLoading: false
-            // }
+            return{
+                ...state,
+                isLoading: false,
+                posts: action.payload
+            }
         default: 
         return state;
     }

@@ -8,7 +8,7 @@ const formSchema = yup.object().shape({
   password: yup.string().min(6, "Password must be 6 characters long"),
 });
 
-export default function Form() {
+export default function Form({ fetchStoryData }) {
   const { push } = useHistory();
   // state for whether our button should be disabled or not.
   const [buttonDisabled, setButtonDisabled] = useState(true);

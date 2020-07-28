@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register'
 import Form from './components/Login';
 import Stories from './components/Stories';
+import NewStory from './components/NewStory';
 
 import { fetchStoryData } from './actions/index';
 
@@ -35,6 +36,7 @@ const App = props => {
         </header>
         <Switch>
           <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} posts = {props.posts} />} />
+          <PrivateRoute exact path = "/newStory" component = {() => <NewStory />} />
           <Route exact path = "/signup" component = {Register} />
           <Route exact path = "/login" component = {() => <Form />} />
         </Switch>

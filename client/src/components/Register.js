@@ -1,7 +1,8 @@
 //Signup page please set up an empty post request, I(Dominique) will finish it, if you need help doing so please dm me :)
 //good luck!! I'll be here if you need any help
 
-import React, { useState, useEffect } from 'react' 
+import React, { useState, useEffect } from 'react'
+import { useHistory }  from 'react-router-dom';
 import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
@@ -33,6 +34,7 @@ const initialRegisterValues = {
   
 
 function Register() {
+    const { push } = useHistory();
     const [users, setUsers] = useState(initialUsers)
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
@@ -45,6 +47,7 @@ function Register() {
             console.log(res)
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)
+            push(`/login`);
         })
         .catch(err => {
             console.log(err)

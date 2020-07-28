@@ -1,37 +1,47 @@
 import React from 'react';
-import { BrowserRouter as Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
+
+import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register'
+import Form from './components/Login';
+import Stories from './components/Stories';
 
+import { fetchStoryData } from './actions/index';
 
-
-
-function App() { 
-
+const App = props => {
   return (
-    <div className="App">
-      <header>
-        <NavLink exact to = "/login">
-          LogIn
-        </NavLink>
+    <Router>
+      <div className="App">
+        <header>
+          <Link to = "/login">
+            LogIn
+          </Link>
 
-        <NavLink exact to = "/signup">
-          SignUp
-        </NavLink>
+          <Link to = "/signup">
+            SignUp
+          </Link>
 
-        <NavLink exact to = "/">
-          Home
-        </NavLink>
-      </header>
-      <Route exact path = "/" />
-
-      <Route exact path = "/login" />
-
-      <Route exact path = "/signup">
-        {/* <Register />  */}
-      </Route>
-    </div>
+          <Link to = "/">
+            Home
+          </Link>
+        </header>
+        <Switch>
+          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} fetchStoryData = {props.fetchStoryData} posts = {props.posts} />} />
+          <Route exact path = "/signup" component = {Register} />
+          <Route exact path = "/login" component = {() => <Form />} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;
+const mapToStateProps = state => {
+  return {
+      username: state.username,
+      posts: state.posts,
+      isLoading: state.isLoading,
+      error: state.error
+  }
+}
+export default connect(mapToStateProps, { fetchStoryData })(App);

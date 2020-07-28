@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
 
@@ -8,6 +9,7 @@ const formSchema = yup.object().shape({
 });
 
 export default function Form() {
+  const { push } = useHistory();
   // state for whether our button should be disabled or not.
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -38,8 +40,9 @@ export default function Form() {
     axios
       .post("http://backend-expat-journal.herokuapp.com/api/auth/login", { username: formState.username, password: formState.password })
       .then(res => {
-        setUsers(res.data); // get just the form data from the REST api
-
+        console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
+        push(`/`);
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

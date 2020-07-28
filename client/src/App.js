@@ -28,7 +28,7 @@ function App() {
       <Route exact path = "/login" />
 
       <Route exact path = "/signup">
-        {/* <Register />  */}
+        <Register /> 
       </Route>
     </div>
   );

@@ -6,6 +6,18 @@ import axios from 'axios'
 import regFormSchema from '../validation/regFormSchema'
 import * as yup from 'yup'
 import StyledRegister from './StyledRegister'
+import { 
+    TextField, 
+    FormControl, 
+    FormControlLabel, 
+    Button, Checkbox, 
+    FormLabel, 
+    FormGroup,
+    NativeSelect, 
+    Select,
+    FormHelperText, 
+    InputLabel
+  } from '@material-ui/core'
 
 
 const initialRegisterValues = {
@@ -97,88 +109,78 @@ function Register() {
       }, [registerValues])
 
     return (
-    <StyledRegister onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
         <h3>Sign Up</h3>
         <div className='inputs-container'>
-            <label className='firstName'>
-                <input
-                    type='text'
-                    name='firstName'
-                    id='firstName'
-                    values={registerValues.firstName}
-                    onChange={inputChange}
-                    placeholder='First Name'
-                />
-            </label>
+            <TextField
+                name='firstName'
+                id='firstName'
+                values={registerValues.firstName}
+                onChange={inputChange}
+                placeholder='First Name' 
+            />
 
-            <label className='lastName'>
-                <input
-                    type='text'
-                    name='lastName'
-                    id='lastName'
-                    values={registerValues.lastName}
-                    onChange={inputChange}
-                    placeholder='Last Name'
-                />
-            </label>
+             <TextField
+                name='lastName'
+                id='lastName'
+                values={registerValues.lastName}
+                onChange={inputChange}
+                placeholder='Last Name' 
+            />
 
-            <label  className='email'>
-                <input
-                    type='email'
-                    name='email'
-                    id='email'
-                    values={registerValues.email}
-                    onChange={inputChange}
-                    placeholder='Email Address'
-                /> 
-            </label>
+            <TextField
+                type='email'
+                name='email'
+                id='email'
+                values={registerValues.email}
+                onChange={inputChange}
+                placeholder='Email' 
+            />
 
-            <label  className='username'>
-                <input
-                    type='text'
-                    name='username'
-                    id='username'
-                    values={registerValues.username}
-                    onChange={inputChange}
-                    placeholder='Username'
-                /> 
-            </label>
+            <TextField
+                name='username'
+                id='username'
+                values={registerValues.username}
+                onChange={inputChange}
+                placeholder='Username' 
+            />
 
-            <label  className='password'>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    values={registerValues.password}
-                    onChange={inputChange}
-                    placeholder='Password'
-                /> 
-            </label>
+            <TextField
+                type='password'
+                name='password'
+                id='password'
+                values={registerValues.password}
+                onChange={inputChange}
+                placeholder='Password' 
+            />
 
-            <label  className='confirmPassword'>
-                <input
-                    type='password'
-                    name='confirmPassword'
-                    id='confirmPassword'
-                    values={registerValues.confirmPassword}
-                    onChange={inputChange}
-                    placeholder='Confirm Password'
-                    
-                />
-            </label> 
+            <TextField
+                type='password'
+                name='confirmPassword'
+                id='confirmPassword'
+                values={registerValues.confirmPassword}
+                onChange={inputChange}
+                placeholder='Confirm Password' 
+            />
 
-            <h4>Accept the terms?</h4>
-            <label className='terms'> Accept
-                <input
-                    type='checkbox'
-                    name='terms'
-                    id='terms'
-                    checked={registerValues.terms}
-                    onChange={inputChange}
+            <FormControl required>
+                <FormLabel>Do you accept the terms of service?</FormLabel>
+                <FormGroup>
+                    <FormControlLabel control={
+                        <Checkbox
+                        name='terms'
+                        id='terms'
+                        checked={registerValues.terms}
+                        onChange={inputChange}
+                        />
+                    }
+                    label='Agree'
+                    />
+                </FormGroup>
+            </FormControl>
 
-                />
-            </label>
-            <button disabled={disabledReg}>Register</button>
+           
+            <Button onClick={onSubmit} disabled={disabledReg} variant='contained' color='primary' >Sign Up</Button>
             {/* <div>
                 <h4>Already have an account?</h4>
                 <a href='#'>Login</a>
@@ -194,7 +196,7 @@ function Register() {
                 {!confirmState && <p>Passwords do not match</p>}
             </div>
         </div>
-    </StyledRegister>
+    </form>
     )
 }
 

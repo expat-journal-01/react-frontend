@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Story = () => {
+const Story = props => {
     return(
         <div>
-            <p>mock story</p>
+            <h2>{props.post.title}</h2>
+            <p>{props.post.description}</p>
         </div>
     );
 }

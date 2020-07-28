@@ -44,13 +44,13 @@ function Register() {
     const postNewUser = newUser => {
         axios.post('http://backend-expat-journal.herokuapp.com/api/auth/register', newUser)
         .then(res => {
-            console.log(res)
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)
             push(`/login`);
+            console.log(res)
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
         })
     }
 
@@ -73,17 +73,17 @@ function Register() {
     const onSubmit = event => {
         event.preventDefault()
         const newUser = {
-            firstName: registerValues.firstName.trim(),
-            lastName: registerValues.lastName.trim(),
-            email: registerValues.email.trim(),
+            // firstName: registerValues.firstName.trim(),
+            // lastName: registerValues.lastName.trim(),
+            // email: registerValues.email.trim(),
             username: registerValues.username.trim(),
-            password: registerValues.password.trim(),
+            password: registerValues.password.trim()
             // confirmPassword: registerValues.confirmPassword.trim(),
         }
         //instead of posting new user, just console logging the data for now
-        console.log(newUser)
+        // console.log(newUser)
 
-        // postNewUser(newUser)
+        postNewUser(newUser)
     }
 
     useEffect(() => {

@@ -55,3 +55,12 @@ header .main-nav-links {
 header .login-signup-btns {
   display: flex;
 }
+
+.newStory-form {
+  margin: 5% auto;
+  width: 95%;
+}
+
+.newStory-form form .text-field {
+  margin: 2% 0;
+}

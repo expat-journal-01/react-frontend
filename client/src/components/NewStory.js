@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useHistory } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core'
 import { FilterHdrOutlined, Loop } from '@material-ui/icons'
 
@@ -10,6 +10,7 @@ const initalValues = {
 }
 
 const NewStory = props => {
+    const { push } = useHistory();
     const [newStory, setNewStory] = useState(initalValues);
 
     const onChange = evt => {
@@ -22,7 +23,7 @@ const NewStory = props => {
     const onSubmit = evt => {
         evt.preventDefault();
         props.uploadNewStory(newStory);
-
+        push(`/`);
     }
 
     return(

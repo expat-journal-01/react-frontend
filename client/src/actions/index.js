@@ -3,7 +3,7 @@ import { axiosAuth } from '../utils/axiosAuth';
 export const FETCHING_REQUEST = "FETCHING_REQUEST";
 export const FETCHING_DATA = "FETCHING_DATA";
 export const RECIEVED_REQUEST = "RECIEVED_REQUEST";
-export const POST_REQUEST_SUCCESS = "POST_REQUEST_SUCCESS";
+export const STORY_REQUEST_SUCCESS = "STORY_REQUEST_SUCCESS";
 export const STORY_DELETED = "STORY_DELETED";
 
 export const fetchStoryData = () => {
@@ -20,13 +20,19 @@ export const fetchStoryData = () => {
     }
 }
 
+export const fetchStory = data => {
+    return dispatch => {
+
+    }
+}
+
 export const uploadNewStory = data => {
     return dispatch => {
         dispatch({ type: RECIEVED_REQUEST });
         axiosAuth().post(`http://157.245.163.179:8000/api/stories`, data)
             .then(response => {
                 console.log(response);
-                dispatch({ type: POST_REQUEST_SUCCESS, payload: response.data });
+                dispatch({ type: STORY_REQUEST_SUCCESS, payload: response.data });
             })
             .catch(error => {
                 console.log(error.response);

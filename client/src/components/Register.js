@@ -1,5 +1,4 @@
-//Signup page please set up an empty post request, I(Dominique) will finish it, if you need help doing so please dm me :)
-//good luck!! I'll be here if you need any help
+
 
 import React, { useState, useEffect } from 'react'
 import { useHistory }  from 'react-router-dom';
@@ -52,7 +51,18 @@ function Register() {
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
     // const [confirmState, setConfirm] = useState(true)
 
-    //POST request, not in use at the momement
+
+    // const getUsers = () => {
+    //     axios.get('http://157.245.163.179:8000/api/users')
+    //     .then(res => {
+    //         console.log('get', res)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // }
+
+
     const postNewUser = newUser => {
         axios.post('http://157.245.163.179:8000/api/auth/register', newUser)
         .then(res => {
@@ -65,7 +75,6 @@ function Register() {
             console.log(err.response)
         })
     }
-
 
     const inputChange = event => {
         event.persist()
@@ -91,6 +100,10 @@ function Register() {
         postNewUser(newUser)
     }
 
+    // useEffect(() => {
+    //     getUsers()
+    // }, [])
+
     useEffect(() => {
         regFormSchema.isValid(registerValues).then(valid => {
           setRegDisabled(!valid)
@@ -98,7 +111,7 @@ function Register() {
       }, [registerValues])
 
     return (
-        <StyledRegContainer className='form-container'>
+        <StyledRegContainer>
             <StyledRegister onSubmit={onSubmit}>
                 <h1>Sign Up</h1>
                 <div className='inputs-container'>

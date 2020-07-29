@@ -72,16 +72,12 @@ const StyledRegister = styled.form `
         font-weight: bold;
     }
 
-   @media (max-width: 768px) {
+   @media (max-width: 800px) {
        width: 70%;
    }
 
 `
-// const CheckboxColor = withStyles({
-//     root: {
-//         color: 'orange',
-//     }
-// })
+
 
 export default StyledRegister
 

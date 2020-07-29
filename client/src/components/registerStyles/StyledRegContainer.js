@@ -16,7 +16,7 @@ const StyledRegContainer = styled.div `
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
        width: 90%;
    }
 

@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 
+
 import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register'
 import Form from './components/Login';
 import Stories from './components/Stories';
 import NewStory from './components/NewStory';
+import Posts from './components/Posts'
 
 import { fetchStoryData } from './actions/index';
 
@@ -15,7 +17,7 @@ const App = props => {
   useEffect(() => {
     props.fetchStoryData();
   }, [])
-  
+
   return (
     <Router>
       <div className="App">
@@ -39,6 +41,9 @@ const App = props => {
           <PrivateRoute exact path = "/newStory" component = {() => <NewStory />} />
           <Route exact path = "/signup" component = {Register} />
           <Route exact path = "/login" component = {() => <Form />} />
+          <Route path='/getPost'>
+            <Posts />
+          </Route>
         </Switch>
       </div>
     </Router>

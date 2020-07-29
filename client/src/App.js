@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Route, Switch, Link } from 'react-router-dom';
 import './App.css';
 
 
@@ -12,15 +11,28 @@ import Story from './components/Story';
 import NewStory from './components/NewStory';
 import EditStory from './components/EditStory';
 
-import { fetchStoryData, uploadNewStory, editStory, deleteStory, fetchStory } from './actions/index';
+import { axiosAuth } from './utils/axiosAuth';
 
-const App = props => {
+const App = () => {
+  const [user, setUser] = useState();
+  const [stories, setStories] = useState([]);
+
   useEffect(() => {
-    props.fetchStoryData();
-  }, [])
+    getStories();
+  }, []);
+
+  const getStories = () => {
+    axiosAuth().get(`http://157.245.163.179:8000/api/stories`)
+      .then(response => {
+        console.log(response);
+        setStories(response.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      })
+  }
 
   return (
-    <Router>
       <div className="App">
         <header>
           <div className = "main-nav-links">
@@ -39,24 +51,25 @@ const App = props => {
           </div>
         </header>
         <Switch>
-          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} stories = {props.stories} deleteStory = {props.deleteStory} />} />
-          <PrivateRoute exact path = "/story/:id" component = {() => <Story fetchStory = {props.fetchStory} />} />
-          <PrivateRoute exact path = "/newStory" component = {() => <NewStory loading = {props.submitLoading} uploadNewStory = {props.uploadNewStory} />} />
-          <PrivateRoute exact path = "/editStory/:id" component = {() => <EditStory editStory = {props.editStory} loading = {props.submitLoading} />} />
-          <Route exact path = "/signup" component = {Register} />
+          <PrivateRoute exact path = "/">
+            <Stories stories = {stories} />
+          </PrivateRoute>
+          <PrivateRoute exact path = "/story/:id">
+            <Story getStories = {getStories} />
+          </PrivateRoute>
+          <PrivateRoute exact path = "/newStory">
+            <NewStory getStories = {getStories} />
+          </PrivateRoute>
+          <PrivateRoute exact path = "/editStory/:id">
+            <EditStory />
+          </PrivateRoute>
+          <Route exact path = "/signup">
+            <Register />
+          </Route>
           <Route exact path = "/login" component = {() => <Form />} />
         </Switch>
       </div>
-    </Router>
   );
 }
-const mapToStateProps = state => {
-  return {
-      username: state.username,
-      stories: state.stories,
-      isLoading: state.isLoading,
-      submitLoading: state.submitLoading,
-      error: state.error
-  }
-}
-export default connect(mapToStateProps, { fetchStoryData, uploadNewStory, editStory, deleteStory, fetchStory })(App);
+
+export default App;

@@ -23,8 +23,7 @@ const EditStory = props => {
 
     return(
         <div className = "newStory-form">
-            {props.loading === false && <FilterHdrOutlined fontSize = "large" />}
-            {props.loading === true && <Loop fontSize = "large" />}
+            <FilterHdrOutlined fontSize = "large" />
             <hr />
             <br />
             <form onSubmit = {onSubmit}>
@@ -47,7 +46,7 @@ const EditStory = props => {
                     
                     onChange = {onChange}
                 />
-                <Button onClick = {onSubmit} variant = "contained">Add Story</Button>
+                <Button onClick = {onSubmit} variant = "contained">Apply</Button>
             </form>
         </div>
     );

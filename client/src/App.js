@@ -8,10 +8,12 @@ import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register'
 import Form from './components/Login';
 import Stories from './components/Stories';
+import Story from './components/Story';
 import NewStory from './components/NewStory';
 import Posts from './components/Posts'
+import EditStory from './components/EditStory';
 
-import { fetchStoryData } from './actions/index';
+import { fetchStoryData, uploadNewStory, editStory, deleteStory, fetchStory } from './actions/index';
 
 const App = props => {
   useEffect(() => {
@@ -37,8 +39,10 @@ const App = props => {
           </div>
         </header>
         <Switch>
-          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} posts = {props.posts} />} />
-          <PrivateRoute exact path = "/newStory" component = {() => <NewStory />} />
+          <PrivateRoute exact path = "/" component = {() => <Stories loading = {props.isLoading} stories = {props.stories} deleteStory = {props.deleteStory} />} />
+          <PrivateRoute exact path = "/story/:id" component = {() => <Story fetchStory = {props.fetchStory} />} />
+          <PrivateRoute exact path = "/newStory" component = {() => <NewStory loading = {props.submitLoading} uploadNewStory = {props.uploadNewStory} />} />
+          <PrivateRoute exact path = "/editStory/:id" component = {() => <EditStory editStory = {props.editStory} loading = {props.submitLoading} />} />
           <Route exact path = "/signup" component = {Register} />
           <Route exact path = "/login" component = {() => <Form />} />
           <Route path='/getPost'>
@@ -52,9 +56,10 @@ const App = props => {
 const mapToStateProps = state => {
   return {
       username: state.username,
-      posts: state.posts,
+      stories: state.stories,
       isLoading: state.isLoading,
+      submitLoading: state.submitLoading,
       error: state.error
   }
 }
-export default connect(mapToStateProps, { fetchStoryData })(App);
+export default connect(mapToStateProps, { fetchStoryData, uploadNewStory, editStory, deleteStory, fetchStory })(App);

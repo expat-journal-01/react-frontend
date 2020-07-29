@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextField, InputAdornment } from '@material-ui/core'
 import { Launch, FilterHdrOutlined } from '@material-ui/icons'
 import './Story.css'
-
-import Story from './Story';
 
 const Stories = props => {
     const { push } = useHistory();
@@ -29,12 +27,14 @@ const Stories = props => {
                 />
             </div>
             {props.loading === true && <img src = 'https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif' alt = "loading img" />}
-            {props.posts.length > 0 && props.posts.map((post, index) => {
-                return(<Story key = {index} post = {post} />)
+            {props.stories.length > 0 && props.stories.map((storie, index) => {
+                return(<div key = {index}>
+                    <h2 onClick = {() => push(`/story/${storie.id}`)}>{storie.title}</h2>
+                </div>)
             })}
         </div>
     )
 }
-
+{/* <Story key = {index} post = {post} deleteStory = {props.deleteStory} /> */}
 
 export default Stories;

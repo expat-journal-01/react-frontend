@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
 import { TextField, Button } from '@material-ui/core'
 import { FilterHdrOutlined, Loop } from '@material-ui/icons'
 
 const initalValues = {
     title: "",
     description: "",
-    coverImage: ""
+    coverImage: "",
+    id: ""
 }
 
-const NewStory = props => {
-    const [newStory, setNewStory] = useState(initalValues);
+const EditStory = props => {
 
     const onChange = evt => {
-        setNewStory({
-            ...newStory,
-            [evt.target.name]: evt.target.value
-        })
+        evt.preventDefault();
     }
 
     const onSubmit = evt => {
         evt.preventDefault();
-        props.uploadNewStory(newStory);
 
+        props.editStory();
     }
 
     return(
@@ -30,14 +26,14 @@ const NewStory = props => {
             {props.loading === false && <FilterHdrOutlined fontSize = "large" />}
             {props.loading === true && <Loop fontSize = "large" />}
             <hr />
-            <h2>Tells us about your newest adventure!</h2>
+            <br />
             <form onSubmit = {onSubmit}>
                 <TextField
                     className = "text-field"
                     label = "Title"
                     variant = "outlined"
                     name = "title"
-                    value = {newStory.title}
+                    
                     onChange = {onChange}
                 />
                 <TextField
@@ -48,7 +44,7 @@ const NewStory = props => {
                     variant = "outlined"
                     rows = {5}
                     name = "description"
-                    value = {newStory.description}
+                    
                     onChange = {onChange}
                 />
                 <Button onClick = {onSubmit} variant = "contained">Add Story</Button>
@@ -57,4 +53,4 @@ const NewStory = props => {
     );
 }
 
-export default NewStory;
+export default EditStory;

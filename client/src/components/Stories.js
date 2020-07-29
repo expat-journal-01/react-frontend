@@ -30,7 +30,7 @@ const Stories = props => {
             </div>
             {props.loading === true && <img src = 'https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif' alt = "loading img" />}
             {props.posts.length > 0 && props.posts.map((post, index) => {
-                return(<Story key = {index} post = {post} />)
+                return(<Story key = {index} post = {post} deleteStory = {props.deleteStory} />)
             })}
         </div>
     )

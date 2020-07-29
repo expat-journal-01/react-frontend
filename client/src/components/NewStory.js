@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core'
-import { FilterHdrOutlined, Loop } from '@material-ui/icons'
+import { FilterHdrOutlined } from '@material-ui/icons'
+
+import { axiosAuth } from '../utils/axiosAuth';
 
 const initalValues = {
     title: "",
@@ -13,6 +15,19 @@ const NewStory = props => {
     const { push } = useHistory();
     const [newStory, setNewStory] = useState(initalValues);
 
+    const createNewStory = story => {
+        axiosAuth().post(`http://157.245.163.179:8000/api/stories`, story)
+            .then(response => {
+                console.log(response);
+                props.getStories();
+                push(`/`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        
+    }
+
     const onChange = evt => {
         setNewStory({
             ...newStory,
@@ -22,14 +37,12 @@ const NewStory = props => {
 
     const onSubmit = evt => {
         evt.preventDefault();
-        props.uploadNewStory(newStory);
-        push(`/`);
+        createNewStory(newStory);
     }
 
     return(
         <div className = "newStory-form">
-            {props.loading === false && <FilterHdrOutlined fontSize = "large" />}
-            {props.loading === true && <Loop fontSize = "large" />}
+            <FilterHdrOutlined />
             <hr />
             <h2>Tells us about your newest adventure!</h2>
             <form onSubmit = {onSubmit}>

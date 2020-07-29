@@ -2,6 +2,7 @@ import { axiosAuth } from '../utils/axiosAuth';
 
 export const FETCHING_REQUEST = "FETCHING_REQUEST";
 export const FETCHING_DATA = "FETCHING_DATA";
+export const FETCHING_STORY = "FETCHING_STORY";
 export const RECIEVED_REQUEST = "RECIEVED_REQUEST";
 export const STORY_REQUEST_SUCCESS = "STORY_REQUEST_SUCCESS";
 export const STORY_DELETED = "STORY_DELETED";

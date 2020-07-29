@@ -11,6 +11,7 @@ import Stories from './components/Stories';
 import Story from './components/Story';
 import NewStory from './components/NewStory';
 import EditStory from './components/EditStory';
+import UsersContainer from './components/UsersContainer'
 
 import { fetchStoryData, uploadNewStory, editStory, deleteStory, fetchStory } from './actions/index';
 
@@ -35,7 +36,6 @@ const App = props => {
           <div className = "login-signup-btns">
             <Link className = "btn" to = "/login">LogIn</Link>
             <Link className = "btn" to = "/signup">SignUp</Link>
-            <Link to='/getPosts'>Post Test</Link>
           </div>
         </header>
         <Switch>
@@ -45,6 +45,9 @@ const App = props => {
           <PrivateRoute exact path = "/editStory/:id" component = {() => <EditStory editStory = {props.editStory} loading = {props.submitLoading} />} />
           <Route exact path = "/signup" component = {Register} />
           <Route exact path = "/login" component = {() => <Form />} />
+          <Route path='/users'>
+            <UsersContainer />
+          </Route>
         </Switch>
       </div>
     </Router>

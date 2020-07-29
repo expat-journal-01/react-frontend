@@ -1,13 +1,8 @@
-
-
 import React, { useState, useEffect } from 'react'
 import { useHistory }  from 'react-router-dom';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import axios from 'axios'
 import { axiosAuth } from '../utils/axiosAuth';
 import regFormSchema from '../validation/regFormSchema'
-import Users from './Users'
-
 import * as yup from 'yup'
 import StyledRegister from './registerStyles/StyledRegister'
 import StyledRegContainer from './registerStyles/StyledRegContainer'
@@ -53,23 +48,8 @@ function Register() {
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
-    const [userData, setUserData] = useState([])
+    // const [userData, setUserData] = useState([])
    
-    useEffect(() => {
-        axiosAuth().get('http://157.245.163.179:8000/api/users')
-        .then(res => {
-            console.log('users data', res.data)
-            setUserData(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, [])
-    // const [confirmState, setConfirm] = useState(true)
-
-
-  
-
 
     const postNewUser = newUser => {
         axios.post('http://157.245.163.179:8000/api/auth/register', newUser)
@@ -77,7 +57,7 @@ function Register() {
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)
             push(`/login`);
-            console.log(res)
+            // console.log(res)
         })
         .catch(err => {
             console.log(err.response)
@@ -97,8 +77,7 @@ function Register() {
                 setRegisterErrors({ ...registerErrors, [event.target.name]: err.errors})
             })
     }
-
-    
+ 
     const onSubmit = event => {
         event.preventDefault()
         const newUser = {
@@ -108,10 +87,6 @@ function Register() {
         postNewUser(newUser)
     }
 
-    // useEffect(() => {
-    //     getUsers()
-    // }, [])
-
     useEffect(() => {
         regFormSchema.isValid(registerValues).then(valid => {
           setRegDisabled(!valid)
@@ -120,7 +95,6 @@ function Register() {
 
     return (
         <StyledRegContainer>
-            <Users userData={userData} />
             <StyledRegister onSubmit={onSubmit}>
                 <h1>Sign Up</h1>
                 <div className='inputs-container'>

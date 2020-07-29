@@ -16,6 +16,15 @@ const StyledRegContainer = styled.div `
     justify-content: center;
     align-items: center;
 
+    .user-data {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        margin: 2%;
+        width: 80%;
+
+    }
+
     @media (max-width: 800px) {
        width: 90%;
    }

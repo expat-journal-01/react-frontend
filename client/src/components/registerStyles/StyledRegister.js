@@ -12,8 +12,9 @@ const StyledRegister = styled.form `
     width: 40%;
     border: 1px solid grey;
     border-radius: 10px;
-    box-shadow: 5px 7px;
+    box-shadow: inset 0 0 5px #000000;
     background-color: whitesmoke;
+   
 
     h1 {
         background-color: #B67721;
@@ -43,6 +44,7 @@ const StyledRegister = styled.form `
     .checkbox-label {
         margin: 2%;
         width: 100%;
+        border-bottom: 2px solid #21B6A8 ;
     }
 
     .checkbox-container {
@@ -67,16 +69,15 @@ const StyledRegister = styled.form `
     .formErrors {
         color: #B6212D;
         margin-bottom: 2%;
+        font-weight: bold;
     }
 
-   
+   @media (max-width: 800px) {
+       width: 70%;
+   }
 
 `
-// const CheckboxColor = withStyles({
-//     root: {
-//         color: 'orange',
-//     }
-// })
+
 
 export default StyledRegister
 

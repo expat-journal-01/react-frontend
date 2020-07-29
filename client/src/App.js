@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 
+
 import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register'
 import Form from './components/Login';
@@ -17,7 +18,7 @@ const App = props => {
   useEffect(() => {
     props.fetchStoryData();
   }, [])
-  
+
   return (
     <Router>
       <div className="App">
@@ -34,6 +35,7 @@ const App = props => {
           <div className = "login-signup-btns">
             <Link className = "btn" to = "/login">LogIn</Link>
             <Link className = "btn" to = "/signup">SignUp</Link>
+            <Link to='/getPosts'>Post Test</Link>
           </div>
         </header>
         <Switch>

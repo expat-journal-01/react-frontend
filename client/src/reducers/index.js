@@ -1,4 +1,4 @@
-import { FETCHING_REQUEST, FETCHING_DATA, RECIEVED_REQUEST, STORY_REQUEST_SUCCESS, STORY_DELETED } from '../actions/index';
+import { FETCHING_REQUEST, FETCHING_DATA, FETCHING_STORY, RECIEVED_REQUEST, STORY_REQUEST_SUCCESS, STORY_DELETED } from '../actions/index';
 
 const initalState = {
     username: "",
@@ -31,6 +31,11 @@ export const reducer = (state = initalState, action) => {
             return {
                 ...state,
                 stories: [...state.stories, action.payload]
+            }
+        case FETCHING_STORY: 
+            return {
+                ...state,
+                story: action.payload
             }
         default: 
         return state;

@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { useHistory }  from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import axios from 'axios'
+import { axiosAuth } from '../utils/axiosAuth';
 import regFormSchema from '../validation/regFormSchema'
+import Users from './Users'
+
 import * as yup from 'yup'
 import StyledRegister from './registerStyles/StyledRegister'
 import StyledRegContainer from './registerStyles/StyledRegContainer'
@@ -49,18 +53,22 @@ function Register() {
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
     const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors)
     const [disabledReg, setRegDisabled] = useState(initialRegDisabled)
+    const [userData, setUserData] = useState([])
+   
+    useEffect(() => {
+        axiosAuth().get('http://157.245.163.179:8000/api/users')
+        .then(res => {
+            console.log('users data', res.data)
+            setUserData(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
     // const [confirmState, setConfirm] = useState(true)
 
 
-    // const getUsers = () => {
-    //     axios.get('http://157.245.163.179:8000/api/users')
-    //     .then(res => {
-    //         console.log('get', res)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // }
+  
 
 
     const postNewUser = newUser => {
@@ -112,6 +120,7 @@ function Register() {
 
     return (
         <StyledRegContainer>
+            <Users userData={userData} />
             <StyledRegister onSubmit={onSubmit}>
                 <h1>Sign Up</h1>
                 <div className='inputs-container'>

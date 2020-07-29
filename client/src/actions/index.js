@@ -24,7 +24,14 @@ export const fetchStoryData = () => {
 
 export const fetchStory = data => {
     return dispatch => {
-
+        axiosAuth().get(`http://157.245.163.179:8000/api/stories/${data}`)
+        .then(res => {
+            dispatch({ type: FETCHING_STORY, payload: res.data})
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 

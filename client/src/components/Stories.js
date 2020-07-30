@@ -32,7 +32,7 @@ const Stories = props => {
                 props.stories.map((storie, index) => {
                     return(
                         <div className = "story" key = {index}>
-                            <Link to = {`/story/${storie.id}`} variant = "inherit">
+                            <Link to = {`/story/${storie.id}`}>
                                 <StoryCard classname = "storyLink" storie = {storie} />
                             </Link>
                         </div>

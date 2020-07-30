@@ -54,10 +54,10 @@ const App = () => {
       <div className="App">
         <header>
           <div className = "main-nav-links">
-            <a className = "btn">Home</a>
-            <a className = "btn">About</a>
-            <a className = "btn">Advice</a>
-            <a className = "btn">Team</a>
+            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
+            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
+            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
+            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
             <Link className = "btn" to = "/">
               Stories
             </Link>

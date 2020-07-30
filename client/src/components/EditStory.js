@@ -17,19 +17,7 @@ const EditStory = props => {
     const [story, setStory] = useState(initalValues);
 
     useEffect(() => {
-        axiosAuth().get(`http://157.245.163.179:8000/api/stories/${params.id}`)
-            .then(response => {
-                console.log(response.data);
-                setStory({
-                    ...story,
-                    title: response.data[0].title,
-                    description: response.data[0].description,
-                    coverImage: response.data[0].coverImage
-                });
-            })
-            .catch(error => {
-                console.log(error.response);
-            })
+        
     }, [params.id])
 
     const onChange = evt => {
@@ -38,7 +26,6 @@ const EditStory = props => {
             ...story,
             [evt.target.name]: evt.target.value
         })
-        console.log(story);
     }
 
     const onSubmit = evt => {

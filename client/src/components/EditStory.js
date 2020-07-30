@@ -17,7 +17,7 @@ const EditStory = props => {
     const [story, setStory] = useState(initalValues);
 
     useEffect(() => {
-        
+
     }, [params.id])
 
     const onChange = evt => {
@@ -30,7 +30,7 @@ const EditStory = props => {
 
     const onSubmit = evt => {
         evt.preventDefault();
-        axiosAuth().put(`http://157.245.163.179:8000/api/stories/${story.id}`, story)
+        axiosAuth().put(`http://157.245.163.179:8000/api/stories/${params.id}`, story)
             .then(response => {
                 console.log(response);
                 props.getStories();

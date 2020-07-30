@@ -27,6 +27,7 @@ const App = () => {
   useEffect(() => {
     getStories();
     getPosts();
+    localStorage.setItem("token", "login");
   }, []);
 
   const getStories = () => {
@@ -102,7 +103,7 @@ const App = () => {
           </Route>
 
           <Route exact path = "/login">
-            <Form />
+            <Form getPosts = {getPosts} getStories = {getStories} />
           </Route>
           <Route path='/users'>
             <UsersContainer />

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
+import { PinDropSharp } from "@material-ui/icons";
 
 const formSchema = yup.object().shape({
   name: yup.string().required("Name is a required field."),
   password: yup.string().min(6, "Password must be 6 characters long"),
 });
 
-export default function Form({ fetchStoryData }) {
+export default function Form({ getStories, getPosts }) {
   const { push } = useHistory();
   // state for whether our button should be disabled or not.
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -43,6 +44,8 @@ export default function Form({ fetchStoryData }) {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         push(`/`);
+        getStories();
+        getPosts();
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

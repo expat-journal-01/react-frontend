@@ -52,7 +52,7 @@ function Register() {
    
 
     const postNewUser = newUser => {
-        axios.post('https://157.245.163.179:8000/api/auth/register', newUser)
+        axios.post('http://157.245.163.179:8000/api/auth/register', newUser)
         .then(res => {
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)

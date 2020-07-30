@@ -7,7 +7,7 @@ function UsersContainer() {
     const [userPicture, setUserPicture] = useState([])
 
     useEffect(() => {
-        axiosAuth().get('https://157.245.163.179:8000/api/users')
+        axiosAuth().get('http://157.245.163.179:8000/api/users')
         .then(res => {
             console.log('users data', res.data)
             setUserData(res.data)

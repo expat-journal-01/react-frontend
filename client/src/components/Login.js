@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
-import { PinDropSharp } from "@material-ui/icons";
+import "./login.css"
 
 const formSchema = yup.object().shape({
   name: yup.string().required("Name is a required field."),
@@ -43,9 +43,9 @@ export default function Form({ getStories, getPosts }) {
       .then(res => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        push(`/`);
         getStories();
         getPosts();
+        push(`/`);
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

@@ -13,24 +13,21 @@ const StyledUserCard = styled.div  `
     box-shadow: inset 0 0 5px #000000;
     background-color: whitesmoke;
     &:hover{
-        background-color: #B67721;
+        transform: scale(1.05);
     }
 
     h4 {
         font-size: 1.8rem;
     }
-
 `
 
 function User(props) {
     const {user} = props
-    console.log('User', props)
+    console.log('User', user)
 
     return (
        <StyledUserCard>
-            <h4>@{user.username}</h4>  
-            {/* <p>Location</p> */}
-           
+            <h4>{user.first_name}</h4>  
         </StyledUserCard>
     )
 }

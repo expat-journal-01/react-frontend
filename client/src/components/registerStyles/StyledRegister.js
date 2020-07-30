@@ -17,10 +17,10 @@ const StyledRegister = styled.form `
    
 
     h1 {
-        border-bottom: 5px double #B67721;
-        color: black;
-        width: 100%;
-        font-family: 'Modern Antiqua', cursive;
+        border-bottom: 5px solid #21B6A8;
+        /* color: white; */
+        width: 40%;
+        /* font-family: 'Modern Antiqua', cursive; */
         padding: 2% 0;
         margin-top: 4%;
         
@@ -58,7 +58,7 @@ const StyledRegister = styled.form `
     .sign-up-button {
         margin: 3%;
         background-color: #B6212D  ;
-        font-family: 'Modern Antiqua', cursive;
+        /* font-family: 'Modern Antiqua', cursive; */
         &:hover {
             background-color:  #7F171F;
         }

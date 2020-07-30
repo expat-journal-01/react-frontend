@@ -1,3 +1,13 @@
+html{
+  background-color: lightgray;
+}
+
+header {
+  margin-top: 2%;
+  padding: 2%;
+  background-color: rgb(58, 58, 58);
+}
+
 .App {
   text-align: center;
  
@@ -50,6 +60,15 @@ header .main-nav-links {
 
 .btn {
   padding: 7px;
+  margin: 1%;
+  border-radius: 5px;
+  background-color: lightgray;
+  color: black;
+  text-decoration: none;
+}
+.btn:hover {
+  padding: 6px;
+  border: 1px solid black;
 }
 
 header .login-signup-btns {
@@ -63,4 +82,9 @@ header .login-signup-btns {
 
 .newStory-form form .text-field {
   margin: 2% 0;
+}
+
+.story-link {
+  color: black;
+  text-decoration: none;
 }

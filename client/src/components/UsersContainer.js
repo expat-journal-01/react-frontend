@@ -4,14 +4,16 @@ import Users from './Users'
 import styled from 'styled-components'
 
 const StyledUserContainer = styled.div `
+  
+
     h1 {
         font-size: 2.5rem;
-        font-family: 'Modern Antiqua', cursive;
-        border-bottom: 10px double  #7F171F;
-        width: 70%;
+        /* font-family: 'Modern Antiqua', cursive; */
+        border-bottom: 5px solid #21B6A8;
+        width: 20%;
         margin: 2% auto;
+        
     }
-
 `
 
 function UsersContainer() {
@@ -19,10 +21,10 @@ function UsersContainer() {
     // 
     
     useEffect(() => {
-        axiosAuth().get('http://157.245.163.179:8000/api/users')
+        axiosAuth().get('https://reqres.in/api/users?page=2')
         .then(res => {
-            console.log('users data', res.data)
-            setUserData(res.data)
+            console.log('users data', res.data.data)
+            setUserData(res.data.data)
         })
         .catch(err => {
             console.log(err)
@@ -31,7 +33,7 @@ function UsersContainer() {
 
     return (
         <StyledUserContainer>
-            <h1>Friends List</h1>
+            <h1>Expat Friends</h1>
             <Users userData={userData} />  
         </StyledUserContainer>
     )

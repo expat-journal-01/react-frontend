@@ -13,7 +13,7 @@ const StyledUser = styled.div `
     border-radius: 10px;
     box-shadow: inset 0 0 10px #000000;
     margin: 2% auto;
-
+    background-color: #282c34;
 `
 
 function Users(props){

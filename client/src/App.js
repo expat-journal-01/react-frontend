@@ -27,7 +27,6 @@ const App = () => {
   useEffect(() => {
     getStories();
     getPosts();
-    localStorage.setItem("token", "login");
   }, []);
 
   const getStories = () => {
@@ -69,9 +68,21 @@ const App = () => {
           <div className = "login-signup-btns">
             <Link className = "btn" to = "/login">LogIn</Link>
             <Link className = "btn" to = "/signup">SignUp</Link>
+            <p className = "btn">Logout</p>
           </div>
         </header>
         <Switch>
+            <Route exact path = "/signup">
+              <Register />
+            </Route>
+
+            <Route exact path = "/login">
+              <Form getPosts = {getPosts} getStories = {getStories} />
+            </Route>
+            <Route path='/users'>
+              <UsersContainer />
+            </Route>
+
             <PrivateRoute exact path = "/">
               <Stories stories = {stories} />
             </PrivateRoute>
@@ -96,18 +107,6 @@ const App = () => {
             <PrivateRoute exact path = "/newPost">
               <NewPost getPosts = {getPosts} />
             </PrivateRoute>
-
-
-          <Route exact path = "/signup">
-            <Register />
-          </Route>
-
-          <Route exact path = "/login">
-            <Form getPosts = {getPosts} getStories = {getStories} />
-          </Route>
-          <Route path='/users'>
-            <UsersContainer />
-          </Route>
         </Switch>
       </div>
   );

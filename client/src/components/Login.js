@@ -39,7 +39,7 @@ export default function Form({ getStories, getPosts }) {
   const formSubmit = e => {
     e.preventDefault();
     axios
-      .post("https://157.245.163.179:8000/api/auth/login", { username: formState.username, password: formState.password })
+      .post("https://www.expat-journal.online/api/auth/login", { username: formState.username, password: formState.password })
       .then(res => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);

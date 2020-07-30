@@ -18,13 +18,14 @@ const StyledUserContainer = styled.div `
 
 function UsersContainer() {
     const [userData, setUserData] = useState([])
-    // 
+    // https://www.expat-journal.online/api/users
+    //https://reqres.in/api/users?page=2
     
     useEffect(() => {
-        axiosAuth().get('https://reqres.in/api/users?page=2')
+        axiosAuth().get('https://www.expat-journal.online/api/users')
         .then(res => {
-            console.log('users data', res.data.data)
-            setUserData(res.data.data)
+            console.log('users data', res.data)
+            setUserData(res.data)
         })
         .catch(err => {
             console.log(err)

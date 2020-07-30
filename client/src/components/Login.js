@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
-import { PinDropSharp } from "@material-ui/icons";
+import "./login.css"
 
 const formSchema = yup.object().shape({
   name: yup.string().required("Name is a required field."),

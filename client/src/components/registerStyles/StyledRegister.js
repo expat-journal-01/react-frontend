@@ -17,8 +17,8 @@ const StyledRegister = styled.form `
    
 
     h1 {
-        border-bottom: 10px double #B67721;
-        color: black;
+        background-color: #B67721;
+        color: white;
         width: 100%;
         font-family: 'Modern Antiqua', cursive;
         padding: 2% 0;

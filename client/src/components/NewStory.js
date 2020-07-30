@@ -16,7 +16,7 @@ const NewStory = props => {
     const [newStory, setNewStory] = useState(initalValues);
 
     const createNewStory = story => {
-        axiosAuth().post(`https://157.245.163.179:8000/api/stories`, story)
+        axiosAuth().post(`https://www.expat-journal.online/api/stories`, story)
             .then(response => {
                 console.log(response);
                 props.getStories();

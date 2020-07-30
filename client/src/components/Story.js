@@ -15,7 +15,7 @@ const Story = props => {
     }, [params.id])
 
     const fetchStory = id => {
-        axiosAuth().get(`https://157.245.163.179:8000/api/stories/${id}`)
+        axiosAuth().get(`https://www.expat-journal.online/api/stories/${id}`)
             .then(response => {
                 setStory(response.data);
                 console.log(response.data);
@@ -26,7 +26,7 @@ const Story = props => {
     }
 
     const deleteStory = id => {
-        axiosAuth().delete(`https://157.245.163.179:8000/api/stories/${id}`)
+        axiosAuth().delete(`https://www.expat-journal.online/api/stories/${id}`)
             .then(response => {
                 console.log(response);
                 props.getStories();

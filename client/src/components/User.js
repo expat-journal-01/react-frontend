@@ -27,7 +27,7 @@ function User(props) {
 
     return (
        <StyledUserCard>
-            <h4>{user.first_name}</h4>  
+            <h4>@{user.username}</h4>  
         </StyledUserCard>
     )
 }

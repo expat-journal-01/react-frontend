@@ -17,7 +17,7 @@ const EditStory = props => {
     const [story, setStory] = useState(initalValues);
 
     useEffect(() => {
-        axiosAuth().get(`https://157.245.163.179:8000/api/stories/${params.id}`)
+        axiosAuth().get(`https://www.expat-journal.online/api/stories/${params.id}`)
             .then(response => {
                 if (response.data[0].coverImage === null) {
                     response.data[0].coverImage = ""
@@ -44,7 +44,7 @@ const EditStory = props => {
 
     const onSubmit = evt => {
         evt.preventDefault();
-        axiosAuth().put(`https://157.245.163.179:8000/api/stories/${params.id}`, story)
+        axiosAuth().put(`https://www.expat-journal.online/stories/${params.id}`, story)
             .then(response => {
                 console.log(response);
                 props.getStories();

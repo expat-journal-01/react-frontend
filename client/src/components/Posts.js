@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { TextField, InputAdornment } from '@material-ui/core'
 import { Launch, FilterHdrOutlined } from '@material-ui/icons'
-import './Story.css'
 
-import StoryCard from './StoryCard';
-
-const Stories = props => {
+const Post = () => {
     const { push } = useHistory();
-
-    return ( 
+    
+    return(
         <div className = "stories-container">
             <div className = "new-story-btn">
                 <FilterHdrOutlined className = "icon" fontSize = "large" />
                 <TextField
-                    onClick = {() => push('/newStory')}
+                    onClick = {() => push('/newPost')}
                     fullWidth
                     variant = "outlined"
-                    label = "Create Story"
+                    label = "New Post"
                     size = "small"
                     InputProps = {{
                         endAdornment: (
@@ -28,20 +25,8 @@ const Stories = props => {
                     }}
                 />
             </div>
-            {
-                props.stories.map((storie, index) => {
-                    return(
-                        <div className = "story" key = {index}>
-                            <Link to = {`/story/${storie.id}`}>
-                                <StoryCard classname = "storyLink" storie = {storie} />
-                            </Link>
-                        </div>
-                    )
-                })
-            }
         </div>
-    )
+    );
 }
 
-
-export default Stories;
+export default Post;

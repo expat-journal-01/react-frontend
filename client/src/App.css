@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+ 
 }
 
 .App-logo {
@@ -35,4 +36,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+header .main-nav-links {
+  display: flex;
+}
+
+.btn {
+  padding: 7px;
+}
+
+header .login-signup-btns {
+  display: flex;
+}
+
+.newStory-form {
+  margin: 5% auto;
+  width: 95%;
+}
+
+.newStory-form form .text-field {
+  margin: 2% 0;
 }

@@ -1,0 +1,56 @@
+.stories-container {
+    width: 95%;
+    margin: 5% auto;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
+.stories-container .new-story-btn {
+    margin: 2% 0;
+    display: flex;
+    align-items: center;
+}
+
+.stories-container .new-story-btn .icon {
+    margin: 0 2%;
+}
+
+.storyLink{
+    color: black;
+    text-decoration: none;
+}
+
+.story {
+    width: 85%;
+    display: flex;
+    flex-flow: column wrap;
+    color: black;
+}
+
+.story p {
+    display: flex;
+    flex-flow: row nowrap;
+    text-align: start;
+}
+
+.story .img-container {
+    width: 60%;
+    height: 40vh;
+    align-self: center;
+    overflow: hidden;
+}
+
+.story .img-container img {
+    width: 100%;
+}
+
+.story .edit-delete-btns {
+    width: 20%;
+    align-self: flex-end;
+}
+
+.story .edit-delete-btns .btn {
+    border: 1px solid black;
+    margin: 2%;
+}

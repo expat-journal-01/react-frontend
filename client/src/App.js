@@ -30,7 +30,7 @@ const App = () => {
   }, []);
 
   const getStories = () => {
-    axiosAuth().get(`https://157.245.163.179:8000/api/stories`)
+    axiosAuth().get(`http://157.245.163.179:8000/api/stories`)
       .then(response => {
         console.log(response.data);
         setStories(response.data);
@@ -41,7 +41,7 @@ const App = () => {
   }
 
   const getPosts = () => {
-    axiosAuth().get(`https://157.245.163.179:8000/api/posts`)
+    axiosAuth().get(`http://157.245.163.179:8000/api/posts`)
       .then(response => {
         console.log(response);
       })

@@ -17,7 +17,7 @@ const NewPost = props => {
 
     
     const createNewPost = setNewPost => {
-        axiosAuth().post(`http://157.245.163.179:8000/api/posts`, setNewPost)
+        axiosAuth().post(`https://157.245.163.179:8000/api/posts`, setNewPost)
             .then(response => {
                 console.log(response);
                 props.getPosts();

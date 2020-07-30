@@ -4,12 +4,18 @@ import './App.css';
 
 
 import PrivateRoute from './components/PrivateRoute';
+
 import Register from './components/Register'
 import Form from './components/Login';
+
 import Stories from './components/Stories';
 import Story from './components/Story';
 import NewStory from './components/NewStory';
 import EditStory from './components/EditStory';
+
+import Posts from './components/Posts';
+import NewPost from './components/NewPost';
+
 import UsersContainer from './components/UsersContainer'
 
 import { axiosAuth } from './utils/axiosAuth';
@@ -20,13 +26,24 @@ const App = () => {
 
   useEffect(() => {
     getStories();
+    getPosts();
   }, []);
 
   const getStories = () => {
     axiosAuth().get(`http://157.245.163.179:8000/api/stories`)
       .then(response => {
-        console.log(response);
+        console.log(response.data);
         setStories(response.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      })
+  }
+
+  const getPosts = () => {
+    axiosAuth().get(`http://157.245.163.179:8000/api/posts`)
+      .then(response => {
+        console.log(response);
       })
       .catch(error => {
         console.log(error.response);
@@ -44,6 +61,9 @@ const App = () => {
             <Link className = "btn" to = "/">
               Stories
             </Link>
+            <Link className = "btn" to = "/posts">
+              Posts
+            </Link>
           </div>
           <div className = "login-signup-btns">
             <Link className = "btn" to = "/login">LogIn</Link>
@@ -51,21 +71,36 @@ const App = () => {
           </div>
         </header>
         <Switch>
-          <PrivateRoute exact path = "/">
-            <Stories stories = {stories} />
-          </PrivateRoute>
-          <PrivateRoute exact path = "/story/:id">
-            <Story getStories = {getStories} />
-          </PrivateRoute>
-          <PrivateRoute exact path = "/newStory">
-            <NewStory getStories = {getStories} />
-          </PrivateRoute>
-          <PrivateRoute exact path = "/editStory/:id">
-            <EditStory />
-          </PrivateRoute>
+            <PrivateRoute exact path = "/">
+              <Stories stories = {stories} />
+            </PrivateRoute>
+
+            <PrivateRoute exact path = "/story/:id">
+              <Story getStories = {getStories} />
+            </PrivateRoute>
+
+            <PrivateRoute exact path = "/newStory">
+              <NewStory getStories = {getStories} />
+            </PrivateRoute>
+
+            <PrivateRoute exact path = "/editStory/:id">
+              <EditStory getStories = {getStories} />
+            </PrivateRoute>
+            
+
+            <PrivateRoute exact path = "/posts">
+              <Posts getPosts = {getPosts} />
+            </PrivateRoute>
+            
+            <PrivateRoute exact path = "/newPost">
+              <NewPost getPosts = {getPosts} />
+            </PrivateRoute>
+
+
           <Route exact path = "/signup">
             <Register />
           </Route>
+
           <Route exact path = "/login" component = {() => <Form />} />
           <Route path='/users'>
             <UsersContainer />

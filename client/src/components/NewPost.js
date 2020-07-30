@@ -11,16 +11,17 @@ const initalValues = {
     coverImage: ""
 }
 
-const NewStory = props => {
+const NewPost = props => {
     const { push } = useHistory();
-    const [newStory, setNewStory] = useState(initalValues);
+    const [post, setPost] = useState(initalValues);
 
-    const createNewStory = story => {
-        axiosAuth().post(`http://157.245.163.179:8000/api/stories`, story)
+    
+    const createNewPost = setNewPost => {
+        axiosAuth().post(`http://157.245.163.179:8000/api/posts`, setNewPost)
             .then(response => {
                 console.log(response);
-                props.getStories();
-                push(`/`);
+                props.getPosts();
+                push(`/posts`);
             })
             .catch(error => {
                 console.log(error);
@@ -29,30 +30,29 @@ const NewStory = props => {
     }
 
     const onChange = evt => {
-        setNewStory({
-            ...newStory,
+        setPost({
+            ...post,
             [evt.target.name]: evt.target.value
         })
     }
 
     const onSubmit = evt => {
         evt.preventDefault();
-        createNewStory(newStory);
+        createNewPost(post);
     }
 
     return(
-        <div className = "newStory-form">
+        <div>
             <FilterHdrOutlined />
             <hr />
-            <h2>Tells us about your newest adventure!</h2>
-            <form onSubmit = {onSubmit}>
+            <h2>Share with the world</h2>
+            <form>
                 <TextField
                     className = "text-field"
                     label = "Title"
                     variant = "outlined"
                     name = "title"
-                    value = {newStory.title}
-                    onChange = {onChange}
+                    value = {post.title}
                 />
                 <TextField
                     className = "text-field"
@@ -62,8 +62,7 @@ const NewStory = props => {
                     variant = "outlined"
                     rows = {5}
                     name = "description"
-                    value = {newStory.description}
-                    onChange = {onChange}
+                    value = {post.description}
                 />
                 <TextField
                 className = "text-field"
@@ -72,13 +71,12 @@ const NewStory = props => {
                 label = "Image Url"
                 variant = "outlined"
                 name = "coverImage"
-                value = {newStory.coverImage}
-                onChange = {onChange}
+                value = {post.coverImage}
             />
-                <Button onClick = {onSubmit} variant = "contained">Add Story</Button>
+                <Button variant = "contained">Add Story</Button>
             </form>
         </div>
     );
 }
 
-export default NewStory;
+export default NewPost;

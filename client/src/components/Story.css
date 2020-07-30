@@ -16,10 +16,16 @@
     margin: 0 2%;
 }
 
+.storyLink{
+    color: black;
+    text-decoration: none;
+}
+
 .story {
     width: 85%;
     display: flex;
     flex-flow: column wrap;
+    color: black;
 }
 
 .story p {

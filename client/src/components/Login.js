@@ -43,9 +43,9 @@ export default function Form({ getStories, getPosts }) {
       .then(res => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        push(`/`);
         getStories();
         getPosts();
+        push(`/`);
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

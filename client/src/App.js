@@ -101,7 +101,9 @@ const App = () => {
             <Register />
           </Route>
 
-          <Route exact path = "/login" component = {() => <Form />} />
+          <Route exact path = "/login">
+            <Form />
+          </Route>
           <Route path='/users'>
             <UsersContainer />
           </Route>

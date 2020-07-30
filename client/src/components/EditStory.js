@@ -54,7 +54,7 @@ const EditStory = props => {
                 console.log(error.response);
             })
     }
-
+    
     return (
         <div className="newStory-form">
             <FilterHdrOutlined fontSize="large" />

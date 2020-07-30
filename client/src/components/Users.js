@@ -1,35 +1,31 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
 import User from './User'
 import styled from 'styled-components'
 
 const StyledUser = styled.div `
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-
+    width: 70%;
+    /* border: 3px solid grey; */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #000000;
+    margin: 2% auto;
+    background-color: #282c34;
 `
 
-
 function Users(props){
-   const { userData, userPicture }  = props
-//    console.log(userPicture)
+   const { userData }  = props
 
     return (
        <StyledUser>
            {
               userData.map((user) => 
-                //   console.log(user)
                   <User user={user} key={user.id} />
               )
            }
-            {/* {
-              userPicture.map((picture) => 
-                  <Picture picture={picture.picture} key={picture.id} />
-
-              )
-           } */}
        </StyledUser>
     )
 }

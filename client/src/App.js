@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Route, Switch, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './App.css';
 
 
@@ -21,8 +22,10 @@ import UsersContainer from './components/UsersContainer'
 import { axiosAuth } from './utils/axiosAuth';
 
 const App = () => {
+  const { push } = useHistory();
   const [user, setUser] = useState();
   const [stories, setStories] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     getStories();
@@ -50,6 +53,11 @@ const App = () => {
       })
   }
 
+  const logout = () => {
+    localStorage.setItem("token", "loggedout");
+    push('/login');
+  }
+
   return (
       <div className="App">
         <header>
@@ -68,7 +76,7 @@ const App = () => {
           <div className = "login-signup-btns">
             <Link className = "btn" to = "/login">LogIn</Link>
             <Link className = "btn" to = "/signup">SignUp</Link>
-            <p className = "btn">Logout</p>
+            <p className = "btn" onClick = {logout}>Logout</p>
           </div>
         </header>
         <Switch>
@@ -77,15 +85,12 @@ const App = () => {
             </Route>
 
             <Route exact path = "/login">
-              <Form getPosts = {getPosts} getStories = {getStories} />
+              <Form getPosts = {getPosts} getStories = {getStories} setUser = {setUser} />
             </Route>
             <Route path='/users'>
               <UsersContainer />
             </Route>
 
-            <PrivateRoute exact path = "/">
-              <Stories stories = {stories} />
-            </PrivateRoute>
 
             <PrivateRoute exact path = "/story/:id">
               <Story getStories = {getStories} />
@@ -106,6 +111,10 @@ const App = () => {
             
             <PrivateRoute exact path = "/newPost">
               <NewPost getPosts = {getPosts} />
+            </PrivateRoute>
+
+            <PrivateRoute exact path = "/">
+              <Stories stories = {stories} />
             </PrivateRoute>
         </Switch>
       </div>

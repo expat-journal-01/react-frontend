@@ -44,7 +44,7 @@ const EditStory = props => {
 
     const onSubmit = evt => {
         evt.preventDefault();
-        axiosAuth().put(`https://www.expat-journal.online/stories/${params.id}`, story)
+        axiosAuth().put(`https://www.expat-journal.online/api/stories/${params.id}`, story)
             .then(response => {
                 console.log(response);
                 props.getStories();

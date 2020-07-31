@@ -46,7 +46,7 @@ export default function Form({ getStories, getPosts, switchLocation, checkLog })
         getStories();
         getPosts();
         checkLog();
-        switchLocation("/");
+        switchLocation("");
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

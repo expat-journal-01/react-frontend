@@ -9,7 +9,7 @@ const formSchema = yup.object().shape({
   password: yup.string().min(6, "Password must be 6 characters long"),
 });
 
-export default function Form({ getStories, getPosts }) {
+export default function Form({ getStories, getPosts, switchLocation, checkLog }) {
   const { push } = useHistory();
   // state for whether our button should be disabled or not.
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -45,7 +45,8 @@ export default function Form({ getStories, getPosts }) {
         localStorage.setItem("token", res.data.token);
         getStories();
         getPosts();
-        push(`/`);
+        checkLog();
+        switchLocation("/");
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

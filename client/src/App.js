@@ -79,19 +79,19 @@ const App = () => {
           {
             loggedIn === false &&
             <div className = "main-nav-links">
-              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
-              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
-              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
-              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
+              <a className = "btn" href = "https://marketing-omega.vercel.app/index.html">Home</a>
+              <a className = "btn" href = "https://marketing-omega.vercel.app/about.html">About</a>
+              <a className = "btn" href = "https://marketing-omega.vercel.app/advice.html">Advice</a>
+              <a className = "btn" href = "https://marketing-omega.vercel.app/team.html">Team</a>
             </div>
           }
             {
               loggedIn === true &&
                 <div className = "main-nav-links">
-                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
-                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
-                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
-                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
+                  <a className = "btn" href = "https://marketing-omega.vercel.app/index.html">Home</a>
+                  <a className = "btn" href = "https://marketing-omega.vercel.app/about.html">About</a>
+                  <a className = "btn" href = "https://marketing-omega.vercel.app/advice.html">Advice</a>
+                  <a className = "btn" href = "https://marketing-omega.vercel.app/team.html">Team</a>
                   <Link className = "btn" to = "/">
                     Stories
                   </Link>

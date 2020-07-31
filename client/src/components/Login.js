@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
 import "./login.css"
@@ -9,7 +9,7 @@ const formSchema = yup.object().shape({
   password: yup.string().min(6, "Password must be 6 characters long"),
 });
 
-export default function Form({ getStories, getPosts, setUser }) {
+export default function Form({ getStories, getPosts, setUser, checkLog, switchLocation }) {
   const { push } = useHistory();
   // state for whether our button should be disabled or not.
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -44,9 +44,10 @@ export default function Form({ getStories, getPosts, setUser }) {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         setUser(formState.username);
-        push(`/`);
+        switchLocation("");
         getStories();
         getPosts();
+        checkLog();
         // reset form if successful
         //TODO: ADD RESPONSE HANDLER
       })

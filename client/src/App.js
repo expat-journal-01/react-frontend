@@ -30,6 +30,7 @@ const App = () => {
   useEffect(() => {
     getStories();
     getPosts();
+    checkLog();
   }, []);
 
   const getStories = () => {
@@ -53,69 +54,87 @@ const App = () => {
       })
   }
 
+  const checkLog = () => {
+    if(localStorage.getItem("token") === "loggedout"){
+      setLoggedIn(false);
+    }
+    else{
+      setLoggedIn(true);
+    }
+  }
+
+  const switchLocation = loca => {
+    push(`/${loca}`)
+  }
+
   const logout = () => {
     localStorage.setItem("token", "loggedout");
+    checkLog();
     push('/login');
   }
 
   return (
       <div className="App">
         <header>
-          <div className = "main-nav-links">
-            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
-            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
-            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
-            <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
-            <Link className = "btn" to = "/">
-              Stories
-            </Link>
-            <Link className = "btn" to = "/posts">
-              Posts
-            </Link>
-          </div>
-          <div className = "login-signup-btns">
-            <Link className = "btn" to = "/login">LogIn</Link>
-            <Link className = "btn" to = "/signup">SignUp</Link>
-            <p className = "btn" onClick = {logout}>Logout</p>
-          </div>
+          {
+            loggedIn === false &&
+            <div className = "main-nav-links">
+              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
+              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
+              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
+              <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
+            </div>
+          }
+            {
+              loggedIn === true &&
+                <div className = "main-nav-links">
+                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/index.html">Home</a>
+                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/about.html">About</a>
+                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/advice.html">Advice</a>
+                  <a className = "btn" href = "https://elated-babbage-c480fd.netlify.app/team.html">Team</a>
+                  <Link className = "btn" to = "/">
+                    Stories
+                  </Link>
+                  <Link className = "btn" to = "/posts">
+                    Posts
+                  </Link>
+                </div>
+            }
+            {
+              loggedIn === false && <div className = "login-signup-btns">
+                <Link className = "btn" to = "/login">LogIn</Link>
+                <Link className = "btn" to = "/signup">SignUp</Link>
+              </div>
+            }
+            {
+              loggedIn === true && <div className = "login-signup-btns">
+                <p className = "btn" onClick = {logout}>Logout</p>
+              </div>
+            }
         </header>
         <Switch>
             <Route exact path = "/signup">
-              <Register />
-            </Route>
-
-            <Route exact path = "/login">
-              <Form getPosts = {getPosts} getStories = {getStories} setUser = {setUser} />
+              <Register switchLocation = {switchLocation} />
             </Route>
             <Route path='/users'>
               <UsersContainer />
             </Route>
 
+            <Route exact path = "/login">
+              <Form getPosts = {getPosts} getStories = {getStories} setUser = {setUser} checkLog = {checkLog} switchLocation = {switchLocation} />
+            </Route>
 
-            <PrivateRoute exact path = "/story/:id">
-              <Story getStories = {getStories} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/story/:id" component = {() => <Story getStories = {getStories} />} />
 
-            <PrivateRoute exact path = "/newStory">
-              <NewStory getStories = {getStories} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/newStory" component = {() => <NewStory getStories = {getStories} />} />
 
-            <PrivateRoute exact path = "/editStory/:id">
-              <EditStory getStories = {getStories} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/editStory/:id" component = {() => <EditStory getStories = {getStories} />} />
             
-
-            <PrivateRoute exact path = "/posts">
-              <Posts getPosts = {getPosts} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/posts" component = {() => <Posts getPosts = {getPosts} />} />
             
-            <PrivateRoute exact path = "/newPost">
-              <NewPost getPosts = {getPosts} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/newPost" component = {() => <NewPost getPosts = {getPosts} />} />
 
-            <PrivateRoute exact path = "/">
-              <Stories stories = {stories} />
-            </PrivateRoute>
+            <PrivateRoute exact path = "/" component = {() => <Stories stories = {stories} />} />
         </Switch>
       </div>
   );

@@ -42,7 +42,7 @@ const initialRegisterValues = {
   const initialRegDisabled = true
   
 
-function Register() {
+function Register({ switchLocation }) {
     const { push } = useHistory();
     const [users, setUsers] = useState(initialUsers)
     const [registerValues, setRegisterValues] = useState(initialRegisterValues)
@@ -56,7 +56,7 @@ function Register() {
         .then(res => {
             setUsers([ res.data, ...users ])
             setRegisterValues(initialRegisterValues)
-            push(`/login`);
+            switchLocation("login");
             // console.log(res)
         })
         .catch(err => {

@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+h3{
+  font-family: fantasy;
+}
+button{
+  margin-right: 90%;
+  margin-bottom: -80%;
+  margin-top: 1%;
+  margin-left: 48%;
+}

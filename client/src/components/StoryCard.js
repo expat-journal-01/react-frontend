@@ -11,7 +11,7 @@ const StoryCard = props => {
     }
 
     return (
-        <div>
+        <div className = "story">
             <h2>{props.storie.title}</h2>
             <div className = "img-container">
                 <img src = {`${props.storie.coverImage}`} alt = "story img" />

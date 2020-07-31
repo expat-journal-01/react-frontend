@@ -66,10 +66,12 @@ header .main-nav-links {
   color: black;
   text-decoration: none;
 }
+
 .btn:hover {
   padding: 6px;
   border: 1px solid black;
 }
+
 
 header .login-signup-btns {
   display: flex;
